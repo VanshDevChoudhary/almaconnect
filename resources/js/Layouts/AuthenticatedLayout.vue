@@ -69,6 +69,12 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Donate
                                 </NavLink>
+                                <NavLink
+                                    :href="route('stories.index')"
+                                    :active="route().current('stories.*')"
+                                >
+                                    Stories
+                                </NavLink>
                             </div>
                         </div>
 
@@ -211,6 +217,12 @@ const showingNavigationDropdown = ref(false);
                             :active="route().current('donate.*')"
                         >
                             Donate
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('stories.index')"
+                            :active="route().current('stories.*')"
+                        >
+                            Stories
                         </ResponsiveNavLink>
                     </div>
 

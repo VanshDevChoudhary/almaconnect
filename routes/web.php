@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\CampaignController as AdminCampaignController;
 use App\Http\Controllers\Admin\DonationController as AdminDonationController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\StoryController as AdminStoryController;
+use App\Http\Controllers\StoryController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\CommentController;
@@ -107,6 +109,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/donate/success/{donation}', [DonationController::class, 'success'])->name('donate.success');
     Route::get('/donate/{donation}/receipt', [DonationController::class, 'downloadReceipt'])->name('donate.receipt');
     Route::get('/donate/{slug}', [DonationController::class, 'show'])->name('donate.show');
+
+    Route::get('/stories', [StoryController::class, 'index'])->name('stories.index');
+    Route::get('/stories/submit', [StoryController::class, 'createSubmission'])
+        ->middleware('alumni-or-admin')->name('stories.submit');
+    Route::post('/stories', [StoryController::class, 'store'])
+        ->middleware('alumni-or-admin')->name('stories.store');
+    Route::get('/stories/mine', [StoryController::class, 'mine'])
+        ->middleware('alumni-or-admin')->name('stories.mine');
+    Route::get('/stories/{slug}', [StoryController::class, 'show'])->name('stories.show');
 });
 
 Route::post('/webhooks/razorpay', [\App\Http\Controllers\Webhooks\RazorpayController::class, 'handle'])
@@ -128,6 +139,15 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::delete('/campaigns/{slug}', [AdminCampaignController::class, 'destroy'])->name('campaigns.destroy');
 
     Route::get('/donations', [AdminDonationController::class, 'index'])->name('donations.index');
+
+    Route::get('/stories', [AdminStoryController::class, 'index'])->name('stories.index');
+    Route::get('/stories/create', [AdminStoryController::class, 'create'])->name('stories.create');
+    Route::post('/stories', [AdminStoryController::class, 'store'])->name('stories.store');
+    Route::get('/stories/{story}/edit', [AdminStoryController::class, 'edit'])->name('stories.edit');
+    Route::patch('/stories/{story}', [AdminStoryController::class, 'update'])->name('stories.update');
+    Route::delete('/stories/{story}', [AdminStoryController::class, 'destroy'])->name('stories.destroy');
+    Route::post('/stories/{story}/approve', [AdminStoryController::class, 'approve'])->name('stories.approve');
+    Route::post('/stories/{story}/reject', [AdminStoryController::class, 'reject'])->name('stories.reject');
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {

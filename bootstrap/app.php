@@ -20,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'alumni.approved' => \App\Http\Middleware\EnsureAlumniApproved::class,
             'admin' => \App\Http\Middleware\EnsureAdmin::class,
             'can-post-job' => \App\Http\Middleware\EnsureCanPostJob::class,
+            'alumni-or-admin' => \App\Http\Middleware\EnsureAlumniOrAdmin::class,
         ]);
 
         $middleware->validateCsrfTokens(except: [
