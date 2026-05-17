@@ -30,6 +30,15 @@ return [
             'AutoFormat.AutoParagraph' => true,
             'AutoFormat.RemoveEmpty'   => true,
         ],
+        'alumni_post' => [
+            'HTML.Doctype'             => 'HTML 4.01 Transitional',
+            'HTML.Allowed'             => 'p,br,strong,em,a[href|title|rel|target],code,pre,ul,ol,li,blockquote',
+            'HTML.TargetBlank'         => true,
+            'HTML.Nofollow'            => true,
+            'URI.AllowedSchemes'       => ['http' => true, 'https' => true, 'mailto' => true],
+            'AutoFormat.AutoParagraph' => false,
+            'AutoFormat.RemoveEmpty'   => true,
+        ],
         'test'    => [
             'Attr.EnableID' => 'true',
         ],

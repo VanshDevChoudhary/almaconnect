@@ -20,6 +20,7 @@
     "dependencies": {
         "dayjs": "^1.11.20",
         "gsap": "^3.15.0",
+        "isomorphic-dompurify": "^3.13.0",
         "marked": "^18.0.3",
         "motion": "^12.38.0"
     }

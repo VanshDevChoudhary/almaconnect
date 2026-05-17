@@ -126,4 +126,17 @@ class User extends Authenticatable
     {
         return $query->where('status', 'approved');
     }
+
+    public function isMemberOf(int $groupId): bool
+    {
+        return $this->groups()->whereKey($groupId)->exists();
+    }
+
+    public function isModeratorOf(int $groupId): bool
+    {
+        return $this->groups()
+            ->whereKey($groupId)
+            ->wherePivot('role', 'moderator')
+            ->exists();
+    }
 }
