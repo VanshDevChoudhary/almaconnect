@@ -10,3 +10,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::job(new SendEventReminders)->dailyAt('09:00')->name('send-event-reminders');
+
+Schedule::command('jobs:expire')->dailyAt('02:00')->timezone('Asia/Kolkata')->name('expire-jobs');

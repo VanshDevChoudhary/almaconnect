@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'alumni.approved' => \App\Http\Middleware\EnsureAlumniApproved::class,
             'admin' => \App\Http\Middleware\EnsureAdmin::class,
+            'can-post-job' => \App\Http\Middleware\EnsureCanPostJob::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

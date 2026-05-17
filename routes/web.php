@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
@@ -77,6 +78,18 @@ Route::middleware(['auth', 'verified', 'alumni.approved'])->group(function () {
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/{slug}', [EventController::class, 'show'])->name('events.show');
     Route::post('/events/{slug}/rsvp', [EventController::class, 'rsvp'])->name('events.rsvp');
+
+    Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+    Route::get('/jobs/create', [JobController::class, 'create'])
+        ->middleware('can-post-job')->name('jobs.create');
+    Route::post('/jobs', [JobController::class, 'store'])
+        ->middleware(['can-post-job', 'throttle:5,60'])->name('jobs.store');
+    Route::get('/jobs/mine', [JobController::class, 'mine'])->name('jobs.mine');
+    Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+    Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+    Route::patch('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+    Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
+    Route::post('/jobs/{job}/mark-filled', [JobController::class, 'markFilled'])->name('jobs.mark-filled');
 
     Route::get('/profile/{slug}', [ProfileController::class, 'show'])->name('profile.show');
 });

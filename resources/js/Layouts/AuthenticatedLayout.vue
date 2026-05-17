@@ -57,6 +57,12 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Events
                                 </NavLink>
+                                <NavLink
+                                    :href="route('jobs.index')"
+                                    :active="route().current('jobs.*')"
+                                >
+                                    Jobs
+                                </NavLink>
                             </div>
                         </div>
 
@@ -187,6 +193,12 @@ const showingNavigationDropdown = ref(false);
                             :active="route().current('events.*')"
                         >
                             Events
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('jobs.index')"
+                            :active="route().current('jobs.*')"
+                        >
+                            Jobs
                         </ResponsiveNavLink>
                     </div>
 
