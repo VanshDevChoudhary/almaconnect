@@ -137,6 +137,10 @@ class ProfileController extends Controller
         Storage::disk('public')->put($path, (string) $encoded);
         $user->update(['avatar' => $path]);
 
+        // Avatar lives on the User, but the search index reads it through
+        // the Profile — refresh the indexed document.
+        $user->profile?->searchable();
+
         return response()->json([
             'avatar' => $path,
             'avatar_url' => Storage::url($path),

@@ -48,6 +48,17 @@ class User extends Authenticatable
         ];
     }
 
+    protected static function booted(): void
+    {
+        // Keep the search index in sync when approval status changes:
+        // approving makes a profile searchable, banning/rejecting removes it.
+        static::updated(function (User $user) {
+            if ($user->wasChanged('status')) {
+                $user->profile?->searchable();
+            }
+        });
+    }
+
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);

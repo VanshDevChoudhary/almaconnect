@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class Profile extends Model
 {
     /** @use HasFactory<\Database\Factories\ProfileFactory> */
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'user_id',
@@ -52,4 +53,40 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function searchableAs(): string
+    {
+        return 'profiles_index';
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        $this->loadMissing('user');
+
+        return [
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'name' => $this->user?->name,
+            'slug' => $this->slug,
+            'batch' => $this->batch,
+            'branch' => $this->branch,
+            'industry' => $this->industry,
+            'city' => $this->city,
+            'country' => $this->country,
+            'current_company' => $this->current_company,
+            'current_role' => $this->current_role,
+            'bio' => $this->bio,
+            'skills' => $this->skills ?? [],
+            'avatar' => $this->user?->avatar,
+        ];
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->user && $this->user->status === 'approved';
+    }
 }
+
