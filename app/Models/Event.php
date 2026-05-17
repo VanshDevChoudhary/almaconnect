@@ -37,7 +37,10 @@ class Event extends Model
     {
         static::creating(function (Event $event) {
             if (empty($event->slug)) {
-                $base = Str::slug($event->title);
+                $year = $event->starts_at
+                    ? \Illuminate\Support\Carbon::parse($event->starts_at)->year
+                    : now()->year;
+                $base = Str::slug($event->title) . '-' . $year;
                 $slug = $base;
                 while (Event::where('slug', $slug)->exists()) {
                     $slug = $base . '-' . Str::lower(Str::random(4));
@@ -45,6 +48,29 @@ class Event extends Model
                 $event->slug = $slug;
             }
         });
+    }
+
+    public function goingCount(): int
+    {
+        return $this->rsvps()->where('status', 'going')->count();
+    }
+
+    public function interestedCount(): int
+    {
+        return $this->rsvps()->where('status', 'interested')->count();
+    }
+
+    public function isUserGoing(User $user): bool
+    {
+        return $this->rsvps()
+            ->where('user_id', $user->id)
+            ->where('status', 'going')
+            ->exists();
+    }
+
+    public function isPast(): bool
+    {
+        return $this->starts_at->isPast();
     }
 
     public function rsvps(): HasMany
