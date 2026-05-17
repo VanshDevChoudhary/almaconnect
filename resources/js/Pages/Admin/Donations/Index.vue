@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import DirectoryPagination from '@/Components/DirectoryPagination.vue';
 import { formatINR } from '@/lib/format';
 
@@ -38,7 +38,7 @@ const statusColor = (s) => ({
 
 <template>
     <Head title="Donations" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Donations</h2>
         </template>
@@ -109,5 +109,5 @@ const statusColor = (s) => ({
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { formatINR } from '@/lib/format';
 import { useToast } from '@/Composables/useToast';
 
@@ -18,7 +18,7 @@ function destroy(slug) {
 
 <template>
     <Head title="Manage campaigns" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Manage campaigns</h2>
@@ -54,5 +54,5 @@ function destroy(slug) {
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

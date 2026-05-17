@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Donation;
 use App\Models\DonationCampaign;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use League\Csv\Writer;
 
 class DonationController extends Controller
 {
@@ -56,5 +58,28 @@ class DonationController extends Controller
                 'to' => $to,
             ],
         ]);
+    }
+
+    public function export(Request $request): \Symfony\Component\HttpFoundation\Response
+    {
+        return response()->streamDownload(function () {
+            $csv = Writer::createFromStream(fopen('php://output', 'w'));
+            $csv->insertOne(['id', 'donor_name', 'donor_email', 'amount', 'currency', 'campaign', 'status', 'payment_id', 'anonymous', 'created_at']);
+
+            Donation::with('user', 'campaign')->cursor()->each(function (Donation $d) use ($csv) {
+                $csv->insertOne([
+                    $d->id,
+                    $d->user?->name ?? 'Deleted user',
+                    $d->user?->email ?? '',
+                    (int) $d->amount,
+                    $d->currency,
+                    $d->campaign?->title ?? 'General Fund',
+                    $d->status,
+                    $d->razorpay_payment_id ?? '',
+                    $d->is_anonymous ? '1' : '0',
+                    $d->created_at->toIso8601String(),
+                ]);
+            });
+        }, 'donations.csv', ['Content-Type' => 'text/csv']);
     }
 }

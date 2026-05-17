@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import SurveyForm from '@/Components/SurveyForm.vue';
 
 defineProps({ survey: { type: Object, required: true } });
@@ -8,7 +8,7 @@ defineProps({ survey: { type: Object, required: true } });
 
 <template>
     <Head title="Edit survey" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header><h2 class="text-xl font-semibold leading-tight text-gray-800">Edit survey</h2></template>
         <div class="py-10">
             <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
@@ -18,5 +18,5 @@ defineProps({ survey: { type: Object, required: true } });
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

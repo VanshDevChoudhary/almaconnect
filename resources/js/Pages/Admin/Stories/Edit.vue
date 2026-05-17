@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import AdminStoryForm from '@/Components/AdminStoryForm.vue';
 
 defineProps({
@@ -11,7 +11,7 @@ defineProps({
 
 <template>
     <Head title="Edit story" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Edit story</h2>
         </template>
@@ -23,5 +23,5 @@ defineProps({
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

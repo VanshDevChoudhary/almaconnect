@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import dayjs from 'dayjs';
 
 const props = defineProps({
@@ -17,7 +17,7 @@ function barPct(count) {
 
 <template>
     <Head :title="`Responses — ${survey.title}`" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">{{ survey.title }}</h2>
@@ -53,5 +53,5 @@ function barPct(count) {
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

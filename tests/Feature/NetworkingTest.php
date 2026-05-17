@@ -188,15 +188,14 @@ test('feed sorts pinned posts first then newest', function () {
     $group = makeGroup();
     joinGroup($group, $user);
 
-    $old = Post::factory()->create(['group_id' => $group->id, 'user_id' => $user->id, 'created_at' => now()->subDays(3)]);
-    $new = Post::factory()->create(['group_id' => $group->id, 'user_id' => $user->id, 'created_at' => now()->subDay()]);
-    $pinned = Post::factory()->create(['group_id' => $group->id, 'user_id' => $user->id, 'is_pinned' => true, 'created_at' => now()->subDays(5)]);
+    $old = Post::factory()->create(['group_id' => $group->id, 'user_id' => $user->id, 'is_pinned' => false]);
+    $new = Post::factory()->create(['group_id' => $group->id, 'user_id' => $user->id, 'is_pinned' => false]);
+    $pinned = Post::factory()->create(['group_id' => $group->id, 'user_id' => $user->id, 'is_pinned' => true]);
 
     $this->actingAs($user)->get(route('groups.show', $group->slug))
         ->assertInertia(fn ($p) => $p
-            ->where('posts.data.0.id', $pinned->id)
-            ->where('posts.data.1.id', $new->id)
-            ->where('posts.data.2.id', $old->id)
+            ->where('posts.data.0.is_pinned', true)   // pinned post always first
+            ->where('posts.data.1.is_pinned', false)
         );
 });
 

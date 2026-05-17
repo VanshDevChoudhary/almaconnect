@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import AdminStoryForm from '@/Components/AdminStoryForm.vue';
 
 defineProps({ alumni: { type: Array, default: () => [] } });
@@ -8,7 +8,7 @@ defineProps({ alumni: { type: Array, default: () => [] } });
 
 <template>
     <Head title="New story" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Create story</h2>
         </template>
@@ -20,5 +20,5 @@ defineProps({ alumni: { type: Array, default: () => [] } });
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

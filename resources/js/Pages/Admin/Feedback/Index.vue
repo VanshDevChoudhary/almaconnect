@@ -2,7 +2,7 @@
 import { ref, reactive } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import DirectoryPagination from '@/Components/DirectoryPagination.vue';
 import { useToast } from '@/Composables/useToast';
 
@@ -43,7 +43,7 @@ const categoryColor = { bug: 'text-red-700', suggestion: 'text-blue-700', genera
 
 <template>
     <Head title="Feedback inbox" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header><h2 class="text-xl font-semibold leading-tight text-gray-800">Feedback inbox</h2></template>
         <div class="py-10">
             <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -107,5 +107,5 @@ const categoryColor = { bug: 'text-red-700', suggestion: 'text-blue-700', genera
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

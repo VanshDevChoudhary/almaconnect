@@ -1,12 +1,12 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import CampaignForm from '@/Components/CampaignForm.vue';
 </script>
 
 <template>
     <Head title="New campaign" />
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Create campaign</h2>
         </template>
@@ -18,5 +18,5 @@ import CampaignForm from '@/Components/CampaignForm.vue';
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

@@ -1,11 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admin\CampaignController as AdminCampaignController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DonationController as AdminDonationController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
+use App\Http\Controllers\Admin\JobController as AdminJobController;
+use App\Http\Controllers\Admin\RosterController as AdminRosterController;
+use App\Http\Controllers\Admin\SettingsController as AdminSettingsController;
 use App\Http\Controllers\Admin\StoryController as AdminStoryController;
 use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\VerificationController as AdminVerificationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\StoryController;
@@ -149,7 +155,23 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::patch('/campaigns/{slug}', [AdminCampaignController::class, 'update'])->name('campaigns.update');
     Route::delete('/campaigns/{slug}', [AdminCampaignController::class, 'destroy'])->name('campaigns.destroy');
 
+    Route::get('/verification', [AdminVerificationController::class, 'index'])->name('verification.index');
+    Route::post('/users/{user}/approve', [AdminUserController::class, 'approve'])->name('users.approve');
+    Route::post('/users/{user}/reject', [AdminUserController::class, 'reject'])->name('users.reject');
+    Route::post('/users/bulk-approve', [AdminUserController::class, 'bulkApprove'])->name('users.bulk-approve');
+    Route::post('/users/bulk-reject', [AdminUserController::class, 'bulkReject'])->name('users.bulk-reject');
+    Route::post('/users/bulk-ban', [AdminUserController::class, 'bulkBan'])->name('users.bulk-ban');
+    Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+    Route::patch('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/roster', [AdminRosterController::class, 'index'])->name('roster.index');
+    Route::post('/roster/upload', [AdminRosterController::class, 'upload'])->name('roster.upload');
+    Route::delete('/roster/{entry}', [AdminRosterController::class, 'destroy'])->name('roster.destroy');
     Route::get('/donations', [AdminDonationController::class, 'index'])->name('donations.index');
+    Route::get('/donations/export', [AdminDonationController::class, 'export'])->name('donations.export');
+    Route::get('/jobs', [AdminJobController::class, 'index'])->name('jobs.index');
+    Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settings.index');
 
     Route::get('/stories', [AdminStoryController::class, 'index'])->name('stories.index');
     Route::get('/stories/create', [AdminStoryController::class, 'create'])->name('stories.create');
@@ -173,11 +195,8 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::delete('/feedback/{feedback}', [AdminFeedbackController::class, 'destroy'])->name('feedback.destroy');
 });
 
-Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return Inertia::render('Admin/Index');
-    })->name('admin.index');
-});
+// admin.index alias for backward compatibility with nav links
+Route::middleware(['auth', 'verified', 'admin'])->get('/admin', [AdminDashboardController::class, 'index'])->name('admin.index'); // Phase 11 admin dashboard
 
 Route::middleware('guest')->group(function () {
     Route::get('/auth/google/redirect', [GoogleController::class, 'redirect'])->name('google.redirect');

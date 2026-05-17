@@ -2,7 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Feedback;
+use App\Models\SuccessStory;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -39,6 +43,13 @@ class HandleInertiaRequests extends Middleware
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),
             ],
+            'adminCounts' => fn () => $request->user()?->isAdmin()
+                ? Cache::remember('admin_counts', 60, fn () => [
+                    'pending_verification' => User::where('status', 'pending')->count(),
+                    'pending_stories' => SuccessStory::where('status', 'pending')->count(),
+                    'unresolved_feedback' => Feedback::where('is_resolved', false)->count(),
+                ])
+                : null,
         ];
     }
 }
