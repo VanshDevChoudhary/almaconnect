@@ -5,6 +5,8 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import FeedbackWidget from '@/Components/FeedbackWidget.vue';
+import Toast from '@/Components/Toast.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
@@ -74,6 +76,12 @@ const showingNavigationDropdown = ref(false);
                                     :active="route().current('stories.*')"
                                 >
                                     Stories
+                                </NavLink>
+                                <NavLink
+                                    :href="route('surveys.index')"
+                                    :active="route().current('surveys.*')"
+                                >
+                                    Surveys
                                 </NavLink>
                             </div>
                         </div>
@@ -224,6 +232,12 @@ const showingNavigationDropdown = ref(false);
                         >
                             Stories
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('surveys.index')"
+                            :active="route().current('surveys.*')"
+                        >
+                            Surveys
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -272,5 +286,7 @@ const showingNavigationDropdown = ref(false);
                 <slot />
             </main>
         </div>
+        <Toast />
+        <FeedbackWidget />
     </div>
 </template>

@@ -3,8 +3,13 @@
 use App\Http\Controllers\Admin\CampaignController as AdminCampaignController;
 use App\Http\Controllers\Admin\DonationController as AdminDonationController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\Admin\StoryController as AdminStoryController;
+use App\Http\Controllers\Admin\SurveyController as AdminSurveyController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\CommentController;
@@ -28,9 +33,11 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'alumni.approved'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified', 'alumni.approved'])->name('dashboard');
+
+Route::post('/feedback', [FeedbackController::class, 'store'])
+    ->middleware('throttle:10,1')->name('feedback.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/pending-review', function () {
@@ -118,6 +125,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stories/mine', [StoryController::class, 'mine'])
         ->middleware('alumni-or-admin')->name('stories.mine');
     Route::get('/stories/{slug}', [StoryController::class, 'show'])->name('stories.show');
+
+    Route::get('/surveys', [SurveyController::class, 'index'])->name('surveys.index');
+    Route::get('/surveys/{survey}', [SurveyController::class, 'show'])->name('surveys.show');
+    Route::post('/surveys/{survey}/respond', [SurveyController::class, 'respond'])->name('surveys.respond');
 });
 
 Route::post('/webhooks/razorpay', [\App\Http\Controllers\Webhooks\RazorpayController::class, 'handle'])
@@ -148,6 +159,18 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::delete('/stories/{story}', [AdminStoryController::class, 'destroy'])->name('stories.destroy');
     Route::post('/stories/{story}/approve', [AdminStoryController::class, 'approve'])->name('stories.approve');
     Route::post('/stories/{story}/reject', [AdminStoryController::class, 'reject'])->name('stories.reject');
+
+    Route::get('/surveys', [AdminSurveyController::class, 'index'])->name('surveys.index');
+    Route::get('/surveys/create', [AdminSurveyController::class, 'create'])->name('surveys.create');
+    Route::post('/surveys', [AdminSurveyController::class, 'store'])->name('surveys.store');
+    Route::get('/surveys/{survey}/edit', [AdminSurveyController::class, 'edit'])->name('surveys.edit');
+    Route::patch('/surveys/{survey}', [AdminSurveyController::class, 'update'])->name('surveys.update');
+    Route::delete('/surveys/{survey}', [AdminSurveyController::class, 'destroy'])->name('surveys.destroy');
+    Route::get('/surveys/{survey}/responses', [AdminSurveyController::class, 'responses'])->name('surveys.responses');
+
+    Route::get('/feedback', [AdminFeedbackController::class, 'index'])->name('feedback.index');
+    Route::post('/feedback/{feedback}/toggle', [AdminFeedbackController::class, 'toggle'])->name('feedback.toggle');
+    Route::delete('/feedback/{feedback}', [AdminFeedbackController::class, 'destroy'])->name('feedback.destroy');
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
