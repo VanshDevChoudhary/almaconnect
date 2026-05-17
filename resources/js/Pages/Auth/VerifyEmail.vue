@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
@@ -25,37 +24,52 @@ const verificationLinkSent = computed(
     <GuestLayout>
         <Head title="Email Verification" />
 
-        <div class="mb-4 text-sm text-gray-600">
-            Thanks for signing up! Before getting started, could you verify your
-            email address by clicking on the link we just emailed to you? If you
-            didn't receive the email, we will gladly send you another.
+        <div data-auth-field class="mb-6 text-center">
+            <h1 class="text-xl font-semibold text-gray-900">
+                Verify your email
+            </h1>
+            <p class="mt-1 text-sm leading-6 text-gray-600">
+                Thanks for signing up! Click the link we just emailed you to
+                verify your address. Didn't get it? We'll send another.
+            </p>
         </div>
 
         <div
-            class="mb-4 text-sm font-medium text-green-600"
             v-if="verificationLinkSent"
+            class="mb-4 rounded-lg bg-green-50 px-4 py-3 text-sm font-medium text-green-700"
         >
-            A new verification link has been sent to the email address you
-            provided during registration.
+            A new verification link has been sent to your email address.
         </div>
 
-        <form @submit.prevent="submit">
-            <div class="mt-4 flex items-center justify-between">
-                <PrimaryButton
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
+        <form @submit.prevent="submit" class="space-y-4">
+            <button
+                data-auth-field
+                type="submit"
+                :class="{ 'opacity-60': form.processing }"
+                :disabled="form.processing"
+                class="flex w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+                <svg
+                    v-if="form.processing"
+                    class="mr-2 h-4 w-4 animate-spin"
+                    viewBox="0 0 24 24"
+                    fill="none"
                 >
-                    Resend Verification Email
-                </PrimaryButton>
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z" />
+                </svg>
+                {{ form.processing ? 'Sending…' : 'Resend verification email' }}
+            </button>
 
-                <Link
-                    :href="route('logout')"
-                    method="post"
-                    as="button"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >Log Out</Link
-                >
-            </div>
+            <Link
+                data-auth-field
+                :href="route('logout')"
+                method="post"
+                as="button"
+                class="block w-full rounded-lg px-4 py-2.5 text-center text-sm font-medium text-gray-500 transition hover:text-gray-900"
+            >
+                Log out
+            </Link>
         </form>
     </GuestLayout>
 </template>

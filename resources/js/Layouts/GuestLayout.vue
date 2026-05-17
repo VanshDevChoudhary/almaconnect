@@ -1,20 +1,26 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
+import { useAuthAnimation } from '@/composables/useAuthAnimation';
+
+const card = ref(null);
+useAuthAnimation(card);
 </script>
 
 <template>
     <div
-        class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0"
+        class="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-50 via-white to-indigo-50 px-4 py-12"
     >
-        <div>
-            <Link href="/">
-                <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
-            </Link>
-        </div>
+        <Link
+            href="/"
+            class="mb-8 text-2xl font-semibold tracking-tight text-gray-900"
+        >
+            Alma<span class="text-indigo-600">Connect</span>
+        </Link>
 
         <div
-            class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
+            ref="card"
+            class="w-full max-w-md rounded-xl border border-gray-200 bg-white p-8 shadow-xl"
         >
             <slot />
         </div>

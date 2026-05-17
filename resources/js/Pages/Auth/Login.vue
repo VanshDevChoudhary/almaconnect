@@ -1,9 +1,9 @@
 <script setup>
 import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
+import GoogleButton from '@/Components/GoogleButton.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
@@ -33,14 +33,35 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
+        <div data-auth-field class="mb-6 text-center">
+            <h1 class="text-xl font-semibold text-gray-900">Welcome back</h1>
+            <p class="mt-1 text-sm text-gray-600">
+                Log in to your AlmaConnect account.
+            </p>
+        </div>
+
+        <div
+            v-if="status"
+            class="mb-4 rounded-lg bg-green-50 px-4 py-3 text-sm font-medium text-green-700"
+        >
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
+        <div data-auth-field>
+            <GoogleButton />
+        </div>
 
+        <div data-auth-field class="my-6 flex items-center gap-4">
+            <div class="h-px flex-1 bg-gray-200"></div>
+            <span class="text-xs font-medium uppercase tracking-wide text-gray-400">
+                or
+            </span>
+            <div class="h-px flex-1 bg-gray-200"></div>
+        </div>
+
+        <form @submit.prevent="submit" class="space-y-5">
+            <div data-auth-field>
+                <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
                     type="email"
@@ -50,13 +71,11 @@ const submit = () => {
                     autofocus
                     autocomplete="username"
                 />
-
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div data-auth-field>
                 <InputLabel for="password" value="Password" />
-
                 <TextInput
                     id="password"
                     type="password"
@@ -65,36 +84,52 @@ const submit = () => {
                     required
                     autocomplete="current-password"
                 />
-
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4 block">
+            <div data-auth-field class="flex items-center justify-between">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600"
-                        >Remember me</span
-                    >
+                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
                 </label>
-            </div>
 
-            <div class="mt-4 flex items-center justify-end">
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    class="text-sm text-gray-600 underline-offset-2 hover:text-gray-900 hover:underline"
                 >
-                    Forgot your password?
+                    Forgot password?
                 </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
             </div>
+
+            <button
+                data-auth-field
+                type="submit"
+                :class="{ 'opacity-60': form.processing }"
+                :disabled="form.processing"
+                class="flex w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+                <svg
+                    v-if="form.processing"
+                    class="mr-2 h-4 w-4 animate-spin"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                >
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z" />
+                </svg>
+                {{ form.processing ? 'Logging in…' : 'Log in' }}
+            </button>
+
+            <p data-auth-field class="text-center text-sm text-gray-600">
+                Don't have an account?
+                <Link
+                    :href="route('register')"
+                    class="font-medium text-indigo-600 hover:text-indigo-700"
+                >
+                    Register
+                </Link>
+            </p>
         </form>
     </GuestLayout>
 </template>

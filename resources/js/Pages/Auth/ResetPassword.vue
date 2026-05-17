@@ -2,7 +2,6 @@
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 
@@ -35,10 +34,18 @@ const submit = () => {
     <GuestLayout>
         <Head title="Reset Password" />
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
+        <div data-auth-field class="mb-6 text-center">
+            <h1 class="text-xl font-semibold text-gray-900">
+                Reset your password
+            </h1>
+            <p class="mt-1 text-sm text-gray-600">
+                Choose a new password for your account.
+            </p>
+        </div>
 
+        <form @submit.prevent="submit" class="space-y-5">
+            <div data-auth-field>
+                <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
                     type="email"
@@ -48,13 +55,11 @@ const submit = () => {
                     autofocus
                     autocomplete="username"
                 />
-
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div data-auth-field>
                 <InputLabel for="password" value="Password" />
-
                 <TextInput
                     id="password"
                     type="password"
@@ -63,16 +68,14 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                 />
-
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4">
+            <div data-auth-field>
                 <InputLabel
                     for="password_confirmation"
-                    value="Confirm Password"
+                    value="Confirm password"
                 />
-
                 <TextInput
                     id="password_confirmation"
                     type="password"
@@ -81,21 +84,30 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                 />
-
                 <InputError
                     class="mt-2"
                     :message="form.errors.password_confirmation"
                 />
             </div>
 
-            <div class="mt-4 flex items-center justify-end">
-                <PrimaryButton
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
+            <button
+                data-auth-field
+                type="submit"
+                :class="{ 'opacity-60': form.processing }"
+                :disabled="form.processing"
+                class="flex w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+                <svg
+                    v-if="form.processing"
+                    class="mr-2 h-4 w-4 animate-spin"
+                    viewBox="0 0 24 24"
+                    fill="none"
                 >
-                    Reset Password
-                </PrimaryButton>
-            </div>
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z" />
+                </svg>
+                {{ form.processing ? 'Resetting…' : 'Reset password' }}
+            </button>
         </form>
     </GuestLayout>
 </template>
