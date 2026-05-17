@@ -21,6 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\EnsureAdmin::class,
             'can-post-job' => \App\Http\Middleware\EnsureCanPostJob::class,
         ]);
+
+        $middleware->validateCsrfTokens(except: [
+            'webhooks/razorpay',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

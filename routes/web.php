@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CampaignController as AdminCampaignController;
+use App\Http\Controllers\Admin\DonationController as AdminDonationController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EventController;
@@ -94,6 +97,21 @@ Route::middleware(['auth', 'verified', 'alumni.approved'])->group(function () {
     Route::get('/profile/{slug}', [ProfileController::class, 'show'])->name('profile.show');
 });
 
+// Donations: available to any verified user (including pending) — financial
+// support shouldn't be gated behind alumni approval.
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/donate', [DonationController::class, 'index'])->name('donate.index');
+    Route::post('/donate/create-order', [DonationController::class, 'createOrder'])
+        ->middleware('throttle:10,1')->name('donate.create-order');
+    Route::post('/donate/verify', [DonationController::class, 'verify'])->name('donate.verify');
+    Route::get('/donate/success/{donation}', [DonationController::class, 'success'])->name('donate.success');
+    Route::get('/donate/{donation}/receipt', [DonationController::class, 'downloadReceipt'])->name('donate.receipt');
+    Route::get('/donate/{slug}', [DonationController::class, 'show'])->name('donate.show');
+});
+
+Route::post('/webhooks/razorpay', [\App\Http\Controllers\Webhooks\RazorpayController::class, 'handle'])
+    ->name('webhooks.razorpay');
+
 Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/events', [AdminEventController::class, 'index'])->name('events.index');
     Route::get('/events/create', [AdminEventController::class, 'create'])->name('events.create');
@@ -101,6 +119,15 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::get('/events/{slug}/edit', [AdminEventController::class, 'edit'])->name('events.edit');
     Route::patch('/events/{slug}', [AdminEventController::class, 'update'])->name('events.update');
     Route::delete('/events/{slug}', [AdminEventController::class, 'destroy'])->name('events.destroy');
+
+    Route::get('/campaigns', [AdminCampaignController::class, 'index'])->name('campaigns.index');
+    Route::get('/campaigns/create', [AdminCampaignController::class, 'create'])->name('campaigns.create');
+    Route::post('/campaigns', [AdminCampaignController::class, 'store'])->name('campaigns.store');
+    Route::get('/campaigns/{slug}/edit', [AdminCampaignController::class, 'edit'])->name('campaigns.edit');
+    Route::patch('/campaigns/{slug}', [AdminCampaignController::class, 'update'])->name('campaigns.update');
+    Route::delete('/campaigns/{slug}', [AdminCampaignController::class, 'destroy'])->name('campaigns.destroy');
+
+    Route::get('/donations', [AdminDonationController::class, 'index'])->name('donations.index');
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {

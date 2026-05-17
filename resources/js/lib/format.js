@@ -18,6 +18,10 @@ export function formatSalary(min, max, currency = 'INR') {
     return `Up to ${symbol}${fmt(max)}`;
 }
 
+export function formatINR(amount) {
+    return `₹${Number(amount || 0).toLocaleString('en-IN')}`;
+}
+
 export const JOB_TYPE_LABELS = {
     full_time: 'Full-time',
     internship: 'Internship',
