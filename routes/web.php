@@ -31,13 +31,27 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+    if (auth()->check()) {
+        return redirect('/dashboard');
+    }
+
+    $stats = \Illuminate\Support\Facades\Cache::remember('landing_stats', 3600, fn () => [
+        'alumni' => \App\Models\User::where('role', 'alumni')->where('status', 'approved')->count(),
+        'donations' => (int) \App\Models\Donation::where('status', 'success')->sum('amount'),
+        'events' => \App\Models\Event::count(),
+        'mentors' => \App\Models\User::where('role', 'alumni')
+            ->whereHas('profile', fn ($q) => $q->whereNotNull('current_company'))
+            ->count(),
     ]);
-});
+
+    $stories = \App\Models\SuccessStory::published()
+        ->with('featuredUser.profile')
+        ->latest('published_at')
+        ->limit(5)
+        ->get();
+
+    return view('welcome', compact('stats', 'stories'));
+})->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified', 'alumni.approved'])->name('dashboard');
