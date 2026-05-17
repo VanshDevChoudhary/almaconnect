@@ -36,9 +36,19 @@ Route::middleware('auth')->group(function () {
         return view('access-denied', ['reason' => $reason]);
     })->name('access-denied');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Profile editing is available to pending users (no alumni.approved) so they
+// can complete their profile while awaiting approval.
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/avatar', [ProfileController::class, 'uploadAvatar'])->name('profile.avatar');
+});
+
+Route::middleware(['auth', 'verified', 'alumni.approved'])->group(function () {
+    Route::get('/profile/{slug}', [ProfileController::class, 'show'])->name('profile.show');
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {

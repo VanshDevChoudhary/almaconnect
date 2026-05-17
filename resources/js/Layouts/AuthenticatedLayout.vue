@@ -72,9 +72,15 @@ const showingNavigationDropdown = ref(false);
 
                                     <template #content>
                                         <DropdownLink
+                                            v-if="$page.props.auth.profileSlug"
+                                            :href="route('profile.show', $page.props.auth.profileSlug)"
+                                        >
+                                            Your profile
+                                        </DropdownLink>
+                                        <DropdownLink
                                             :href="route('profile.edit')"
                                         >
-                                            Profile
+                                            Edit profile
                                         </DropdownLink>
                                         <DropdownLink
                                             :href="route('logout')"
