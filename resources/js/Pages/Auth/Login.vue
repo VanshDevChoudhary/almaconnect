@@ -1,7 +1,6 @@
 ﻿<script setup>
 import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import GoogleButton from '@/Components/GoogleButton.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -45,18 +44,6 @@ const submit = () => {
             class="mb-4 rounded-lg bg-green-50 px-4 py-3 text-sm font-medium text-green-700"
         >
             {{ status }}
-        </div>
-
-        <div data-auth-field>
-            <GoogleButton />
-        </div>
-
-        <div data-auth-field class="my-6 flex items-center gap-4">
-            <div class="h-px flex-1 bg-gray-200"></div>
-            <span class="text-xs font-medium uppercase tracking-wide text-gray-400">
-                or
-            </span>
-            <div class="h-px flex-1 bg-gray-200"></div>
         </div>
 
         <form @submit.prevent="submit" class="space-y-5">

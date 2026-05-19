@@ -1,7 +1,6 @@
 ﻿<script setup>
 import { computed } from 'vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import GoogleButton from '@/Components/GoogleButton.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -45,18 +44,6 @@ const submit = () => {
             <p class="mt-1 text-sm text-gray-600">
                 Create your AlmaConnect account.
             </p>
-        </div>
-
-        <div data-auth-field>
-            <GoogleButton label="Sign up with Google" />
-        </div>
-
-        <div data-auth-field class="my-6 flex items-center gap-4">
-            <div class="h-px flex-1 bg-gray-200"></div>
-            <span class="text-xs font-medium uppercase tracking-wide text-gray-400">
-                or
-            </span>
-            <div class="h-px flex-1 bg-gray-200"></div>
         </div>
 
         <form @submit.prevent="submit" class="space-y-5">
