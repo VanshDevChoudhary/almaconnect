@@ -1,7 +1,7 @@
 ﻿<script setup>
 import { ref, onMounted } from 'vue';
 import { usePage } from '@inertiajs/vue3';
-import { useToast } from '@/Composables/useToast';
+import { useToast } from '@/composables/useToast';
 
 const page = usePage();
 const { showToast } = useToast();

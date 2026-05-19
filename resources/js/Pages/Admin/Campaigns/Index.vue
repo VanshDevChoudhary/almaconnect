@@ -2,7 +2,7 @@
 import { Head, Link, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { formatINR } from '@/lib/format';
-import { useToast } from '@/Composables/useToast';
+import { useToast } from '@/composables/useToast';
 
 defineProps({ campaigns: { type: Array, default: () => [] } });
 

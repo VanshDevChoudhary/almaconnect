@@ -3,8 +3,8 @@ import { ref } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import UserAvatar from '@/Components/UserAvatar.vue';
-import { useToast } from '@/Composables/useToast';
-import { useConfirm } from '@/Composables/useConfirm';
+import { useToast } from '@/composables/useToast';
+import { useConfirm } from '@/composables/useConfirm';
 
 const props = defineProps({
     pending: { type: Array, default: () => [] },
