@@ -8,7 +8,7 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ── Hero entrance ────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     if (reduced) {
-        document.querySelectorAll('[data-hero]').forEach((el) => {
+        document.querySelectorAll('[data-hero-word], [data-hero-sub], [data-hero-cta], [data-hero-stats]').forEach((el) => {
             el.style.opacity = '1';
             el.style.transform = 'none';
         });
@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const stats = document.querySelector('[data-hero-stats]');
 
     if (words.length) {
-        tl.from(words, { opacity: 0, y: 24, stagger: 0.06, duration: 0.7 });
+        tl.fromTo(words, { opacity: 0, y: 24 }, { opacity: 1, y: 0, stagger: 0.06, duration: 0.7 });
     }
-    if (sub) tl.from(sub, { opacity: 0, y: 20, duration: 0.6 }, '-=0.2');
-    if (ctas.length) tl.from(ctas, { opacity: 0, y: 18, scale: 0.95, stagger: 0.1, duration: 0.5 }, '-=0.1');
-    if (stats) tl.from(stats, { opacity: 0, duration: 0.4 }, '-=0.1');
+    if (sub) tl.fromTo(sub, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.2');
+    if (ctas.length) tl.fromTo(ctas, { opacity: 0, y: 18, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.5 }, '-=0.1');
+    if (stats) tl.fromTo(stats, { opacity: 0 }, { opacity: 1, duration: 0.4 }, '-=0.1');
 
     /* ── Stat counters ──────────────────────────────────────────────── */
     document.querySelectorAll('[data-counter]').forEach((el) => {
