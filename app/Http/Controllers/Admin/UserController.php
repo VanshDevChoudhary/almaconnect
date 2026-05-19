@@ -54,7 +54,10 @@ class UserController extends Controller
     public function approve(Request $request, User $user): RedirectResponse
     {
         $wasNotApproved = $user->status !== 'approved';
-        $user->update(['status' => 'approved']);
+        $user->update([
+            'status' => 'approved',
+            'email_verified_at' => $user->email_verified_at ?? now(),
+        ]);
 
         if ($wasNotApproved) {
             Mail::to($user->email)->send(new AccountApprovedMail($user));
@@ -73,7 +76,10 @@ class UserController extends Controller
     {
         $ids = (array) $request->input('ids', []);
         $users = User::whereIn('id', $ids)->where('status', '!=', 'approved')->get();
-        User::whereIn('id', $ids)->update(['status' => 'approved']);
+        User::whereIn('id', $ids)->update([
+            'status' => 'approved',
+            'email_verified_at' => now(),
+        ]);
 
         foreach ($users as $user) {
             Mail::to($user->email)->send(new AccountApprovedMail($user));
