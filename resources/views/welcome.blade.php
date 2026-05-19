@@ -135,36 +135,118 @@
 </header>
 
 {{-- ══════════════════════════════════════════════════════════ HERO ══ --}}
-<section class="hero-mesh relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-32 text-white">
-    <div class="absolute inset-0 bg-black/10"></div>
-    <div class="relative z-10 mx-auto max-w-4xl text-center">
-        <h1 class="text-5xl font-bold tracking-tight leading-tight md:text-6xl lg:text-7xl">
-            @php
-                $words = explode(' ', 'The alumni network for institute graduates.');
-            @endphp
-            @foreach($words as $word)
-                <span data-hero-word class="inline-block mr-3">{{ $word }}</span>
-            @endforeach
-        </h1>
+<section class="hero-mesh relative min-h-screen overflow-hidden px-4 text-white">
+    <div class="absolute inset-0 bg-black/15"></div>
+    <div class="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-4 py-32 sm:px-6 lg:px-8">
+        <div class="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
-        <p data-hero-sub class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
-            Reconnect with classmates. Mentor the next batch. Discover opportunities, attend reunions, and give back to the place that shaped you.
-        </p>
+            {{-- ── Left: copy + CTAs ── --}}
+            <div class="text-center lg:text-left">
+                <h1 class="text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
+                    @php $words = explode(' ', 'The alumni network for institute graduates.'); @endphp
+                    @foreach($words as $word)
+                        <span data-hero-word class="inline-block mr-2">{{ $word }}</span>
+                    @endforeach
+                </h1>
 
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a data-hero-cta href="{{ route('register') }}"
-               class="rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-indigo-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-white hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50">
-                Get started — it's free
-            </a>
-            <a data-hero-cta href="{{ route('login') }}"
-               class="rounded-xl border border-white/40 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/30">
-                I have an account →
-            </a>
+                <p data-hero-sub class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/85 lg:mx-0 md:text-xl">
+                    Reconnect with classmates. Mentor the next batch. Discover opportunities, attend reunions, and give back to the place that shaped you.
+                </p>
+
+                <div class="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+                    <a data-hero-cta href="{{ route('register') }}"
+                       class="rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-indigo-700 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50">
+                        Get started — it's free
+                    </a>
+                    <a data-hero-cta href="{{ route('login') }}"
+                       class="rounded-xl border border-white/40 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/30">
+                        I have an account →
+                    </a>
+                </div>
+
+                <p data-hero-stats class="mt-10 text-sm text-white/70">
+                    🟢 {{ number_format($stats['alumni']) }} alumni &nbsp;·&nbsp; {{ $stats['events'] }}+ events &nbsp;·&nbsp; {{ $stats['mentors'] }}+ mentors
+                </p>
+            </div>
+
+            {{-- ── Right: dashboard preview card ── --}}
+            <div data-hero-cta class="hidden lg:flex lg:justify-center lg:items-center">
+                <div class="relative w-full max-w-sm">
+
+                    {{-- Main card --}}
+                    <div class="rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-sm">
+                        {{-- Card header --}}
+                        <div class="mb-5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-xl">🎓</div>
+                                <div>
+                                    <p class="text-sm font-semibold">Alumni Dashboard</p>
+                                    <p class="text-xs text-white/60">AlmaConnect</p>
+                                </div>
+                            </div>
+                            <span class="rounded-full bg-emerald-400/20 px-2.5 py-1 text-xs font-semibold text-emerald-300">● Live</span>
+                        </div>
+
+                        {{-- Stats row --}}
+                        <div class="mb-5 grid grid-cols-3 gap-3">
+                            <div class="rounded-xl bg-white/10 p-3 text-center">
+                                <p class="text-xl font-bold">{{ number_format($stats['alumni']) }}</p>
+                                <p class="mt-0.5 text-xs text-white/60">Alumni</p>
+                            </div>
+                            <div class="rounded-xl bg-white/10 p-3 text-center">
+                                <p class="text-xl font-bold">{{ $stats['events'] }}</p>
+                                <p class="mt-0.5 text-xs text-white/60">Events</p>
+                            </div>
+                            <div class="rounded-xl bg-white/10 p-3 text-center">
+                                <p class="text-xl font-bold">{{ $stats['mentors'] }}</p>
+                                <p class="mt-0.5 text-xs text-white/60">Mentors</p>
+                            </div>
+                        </div>
+
+                        {{-- Recent members --}}
+                        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-white/50">Recent Members</p>
+                        <div class="space-y-2.5">
+                            @foreach([
+                                ['name'=>'Rahul Sharma',  'meta'=>'CSE · Class of 2022', 'color'=>'bg-indigo-400'],
+                                ['name'=>'Anjali Patel',  'meta'=>'ECE · Class of 2021', 'color'=>'bg-pink-400'],
+                                ['name'=>'Nikhil Kumar',  'meta'=>'ME  · Class of 2020', 'color'=>'bg-violet-400'],
+                            ] as $m)
+                            <div class="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2">
+                                <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full {{ $m['color'] }} text-xs font-bold text-white">
+                                    {{ strtoupper(substr($m['name'], 0, 1)) }}
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="truncate text-sm font-medium">{{ $m['name'] }}</p>
+                                    <p class="text-xs text-white/55">{{ $m['meta'] }}</p>
+                                </div>
+                                <span class="ml-auto shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-xs text-white/70">View</span>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- Floating badge: new event --}}
+                    <div class="absolute -right-6 -top-5 flex items-center gap-2 rounded-xl border border-white/20 bg-white/15 px-3 py-2 shadow-lg backdrop-blur-sm">
+                        <span class="text-base">📅</span>
+                        <div>
+                            <p class="text-xs font-semibold">Reunion 2026</p>
+                            <p class="text-xs text-white/60">12 going</p>
+                        </div>
+                    </div>
+
+                    {{-- Floating badge: job --}}
+                    <div class="absolute -bottom-5 -left-6 flex items-center gap-2 rounded-xl border border-white/20 bg-white/15 px-3 py-2 shadow-lg backdrop-blur-sm">
+                        <span class="text-base">💼</span>
+                        <div>
+                            <p class="text-xs font-semibold">New Job Posted</p>
+                            <p class="text-xs text-white/60">Senior Engineer</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-
-        <p data-hero-stats class="mt-10 text-sm text-white/70">
-            🟢 {{ number_format($stats['alumni']) }} alumni &nbsp;·&nbsp; {{ $stats['events'] }}+ events &nbsp;·&nbsp; {{ $stats['mentors'] }}+ mentors
-        </p>
     </div>
 
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
@@ -299,12 +381,20 @@
                        class="group w-full shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:w-[calc(33.33%-1rem)]"
                        title="Log in to read: {{ e($story->headline) }}"
                     >
-                        <div
-                            class="aspect-video w-full bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600"
+                        <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600"
                             @if($story->cover_image)
                             style="background-image: url('/storage/{{ $story->cover_image }}'); background-size: cover; background-position: center;"
                             @endif
-                        ></div>
+                        >
+                            @if(!$story->cover_image)
+                            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 opacity-30">
+                                <svg class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.905 59.905 0 0 1 12 3.493a59.902 59.902 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                                </svg>
+                                <span class="text-xs font-semibold text-white">Alumni Story</span>
+                            </div>
+                            @endif
+                        </div>
                         <div class="p-4">
                             <span class="text-xs font-semibold uppercase tracking-wide text-indigo-700">
                                 {{ $catlabels[$story->category] ?? $story->category }}
