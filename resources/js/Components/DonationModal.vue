@@ -37,71 +37,20 @@ function close() {
     emit('close');
 }
 
-function loadCheckoutScript() {
-    return new Promise((resolve, reject) => {
-        if (window.Razorpay) return resolve();
-        const s = document.createElement('script');
-        s.src = 'https://checkout.razorpay.com/v1/checkout.js';
-        s.onload = () => resolve();
-        s.onerror = () => reject(new Error('Failed to load Razorpay'));
-        document.head.appendChild(s);
-    });
-}
-
 async function proceed() {
     if (!validAmount.value || processing.value) return;
     processing.value = true;
 
     try {
-        const { data } = await window.axios.post(route('donate.create-order'), {
+        const { data } = await window.axios.post(route('donate.pay'), {
             campaign_id: props.campaign.id,
             amount: finalAmount.value,
             is_anonymous: isAnonymous.value,
         });
 
-        if (!data.key_id) {
-            showToast('Payments are not configured yet. Add Razorpay test keys.', 'error');
-            processing.value = false;
-            return;
-        }
-
-        await loadCheckoutScript();
-
-        const rzp = new window.Razorpay({
-            key: data.key_id,
-            amount: data.amount * 100,
-            currency: 'INR',
-            name: 'AlmaConnect',
-            description: props.campaign.title,
-            order_id: data.order_id,
-            prefill: { name: user.name, email: user.email },
-            theme: { color: '#4F46E5' },
-            handler: async (rzpResponse) => {
-                try {
-                    const verify = await window.axios.post(route('donate.verify'), {
-                        razorpay_order_id: rzpResponse.razorpay_order_id,
-                        razorpay_payment_id: rzpResponse.razorpay_payment_id,
-                        razorpay_signature: rzpResponse.razorpay_signature,
-                        donation_id: data.donation_id,
-                    });
-                    if (verify.data.success) {
-                        router.visit(route('donate.success', data.donation_id));
-                    } else {
-                        showToast('Payment verification failed.', 'error');
-                    }
-                } catch (e) {
-                    showToast('Payment verification failed.', 'error');
-                }
-            },
-            modal: {
-                ondismiss: () => {
-                    processing.value = false;
-                },
-            },
-        });
-        rzp.open();
+        router.visit(route('donate.success', data.donation_id));
     } catch (e) {
-        const msg = e?.response?.data?.error || 'Could not start the payment.';
+        const msg = e?.response?.data?.error || 'Could not process donation.';
         showToast(msg, 'error');
         processing.value = false;
     }
@@ -201,7 +150,7 @@ async function proceed() {
                             class="flex-1 rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60"
                             @click="proceed"
                         >
-                            {{ processing ? 'Starting…' : 'Proceed to payment' }}
+                            {{ processing ? 'Processing…' : 'Confirm Donation' }}
                         </button>
                     </div>
                 </div>

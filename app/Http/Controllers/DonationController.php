@@ -3,27 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrderRequest;
-use App\Http\Requests\VerifyDonationRequest;
 use App\Jobs\SendDonationReceipt;
 use App\Models\Donation;
 use App\Models\DonationCampaign;
-use App\Services\RazorpayService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class DonationController extends Controller
 {
-    public function __construct(private RazorpayService $razorpay)
-    {
-    }
-
     private function campaignCard(DonationCampaign $c): array
     {
         return [
@@ -41,10 +33,7 @@ class DonationController extends Controller
 
     public function index(): Response
     {
-        $campaigns = DonationCampaign::where('is_active', true)
-            ->latest()
-            ->get();
-
+        $campaigns = DonationCampaign::where('is_active', true)->latest()->get();
         $cards = $campaigns->map(fn ($c) => $this->campaignCard($c));
 
         return Inertia::render('Donate/Index', [
@@ -75,7 +64,7 @@ class DonationController extends Controller
         ]);
     }
 
-    public function createOrder(CreateOrderRequest $request): JsonResponse
+    public function pay(CreateOrderRequest $request): JsonResponse
     {
         $data = $request->validated();
 
@@ -86,100 +75,30 @@ class DonationController extends Controller
             }
         }
 
-        try {
-            $donation = DB::transaction(function () use ($data, $request) {
-                $donation = Donation::create([
-                    'user_id' => $request->user()->id,
-                    'campaign_id' => $data['campaign_id'] ?? null,
-                    'amount' => $data['amount'],
-                    'currency' => 'INR',
-                    'razorpay_order_id' => 'pending_'.uniqid(),
-                    'status' => 'pending',
-                    'is_anonymous' => (bool) ($data['is_anonymous'] ?? false),
-                ]);
+        $donation = DB::transaction(function () use ($data, $request) {
+            $donation = Donation::create([
+                'user_id'      => $request->user()->id,
+                'campaign_id'  => $data['campaign_id'] ?? null,
+                'amount'       => $data['amount'],
+                'currency'     => 'INR',
+                'status'       => 'success',
+                'is_anonymous' => (bool) ($data['is_anonymous'] ?? false),
+            ]);
 
-                $order = $this->razorpay->createOrder(
-                    (int) $data['amount'] * 100,
-                    'don_'.$donation->id,
-                    ['donation_id' => $donation->id, 'user_id' => $request->user()->id],
-                );
-
-                $donation->update(['razorpay_order_id' => $order['id']]);
-
-                return $donation;
-            });
-        } catch (\Throwable $e) {
-            Log::error('Razorpay order creation failed', ['error' => $e->getMessage()]);
-
-            return response()->json([
-                'error' => 'Could not start the payment. Please try again later.',
-            ], 502);
-        }
-
-        return response()->json([
-            'order_id' => $donation->razorpay_order_id,
-            'amount' => (int) $donation->amount,
-            'key_id' => config('services.razorpay.key'),
-            'donation_id' => $donation->id,
-        ]);
-    }
-
-    public function verify(VerifyDonationRequest $request): JsonResponse
-    {
-        $data = $request->validated();
-
-        if (! $this->razorpay->verifyPaymentSignature(
-            $data['razorpay_order_id'],
-            $data['razorpay_payment_id'],
-            $data['razorpay_signature'],
-        )) {
-            return response()->json(['success' => false, 'error' => 'Invalid signature'], 400);
-        }
-
-        $donation = Donation::where('id', $data['donation_id'])
-            ->where('razorpay_order_id', $data['razorpay_order_id'])
-            ->firstOrFail();
-
-        if ($donation->status === 'success') {
-            return response()->json(['success' => true, 'already_processed' => true]);
-        }
-
-        $this->markSuccessful($donation, $data['razorpay_payment_id'], $data['razorpay_signature']);
-
-        return response()->json(['success' => true]);
-    }
-
-    /**
-     * Atomic, race-safe success transition. Only the call that flips the
-     * status away from non-success increments the campaign total.
-     */
-    public static function markSuccessful(Donation $donation, string $paymentId, ?string $signature = null): bool
-    {
-        $flipped = false;
-
-        DB::transaction(function () use ($donation, $paymentId, $signature, &$flipped) {
-            $affected = Donation::where('id', $donation->id)
-                ->where('status', '!=', 'success')
-                ->update([
-                    'status' => 'success',
-                    'razorpay_payment_id' => $paymentId,
-                    'razorpay_signature' => $signature,
-                ]);
-
-            if ($affected > 0) {
-                $flipped = true;
-                if ($donation->campaign_id) {
-                    DonationCampaign::where('id', $donation->campaign_id)
-                        ->increment('raised_amount', (int) $donation->amount);
-                }
+            if ($donation->campaign_id) {
+                DonationCampaign::where('id', $donation->campaign_id)
+                    ->increment('raised_amount', (int) $donation->amount);
             }
+
+            return $donation;
         });
 
-        if ($flipped) {
-            SendDonationReceipt::dispatch($donation->fresh());
-        }
+        SendDonationReceipt::dispatch($donation->fresh());
 
-        return $flipped;
+        return response()->json([
+            'success'     => true,
+            'donation_id' => $donation->id,
+        ]);
     }
 
     public function success(Request $request, Donation $donation): Response
@@ -192,11 +111,11 @@ class DonationController extends Controller
 
         return Inertia::render('Donate/Success', [
             'donation' => [
-                'id' => $donation->id,
-                'amount' => (int) $donation->amount,
-                'status' => $donation->status,
-                'donor_name' => $request->user()->name,
-                'email' => $request->user()->email,
+                'id'             => $donation->id,
+                'amount'         => (int) $donation->amount,
+                'status'         => $donation->status,
+                'donor_name'     => $request->user()->name,
+                'email'          => $request->user()->email,
                 'campaign_title' => $donation->campaign?->title ?? 'the institute',
             ],
         ]);

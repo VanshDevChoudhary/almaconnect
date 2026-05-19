@@ -132,9 +132,8 @@ Route::middleware(['auth', 'verified', 'alumni.approved'])->group(function () {
 // support shouldn't be gated behind alumni approval.
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/donate', [DonationController::class, 'index'])->name('donate.index');
-    Route::post('/donate/create-order', [DonationController::class, 'createOrder'])
-        ->middleware('throttle:10,1')->name('donate.create-order');
-    Route::post('/donate/verify', [DonationController::class, 'verify'])->name('donate.verify');
+    Route::post('/donate/pay', [DonationController::class, 'pay'])
+        ->middleware('throttle:10,1')->name('donate.pay');
     Route::get('/donate/success/{donation}', [DonationController::class, 'success'])->name('donate.success');
     Route::get('/donate/{donation}/receipt', [DonationController::class, 'downloadReceipt'])->name('donate.receipt');
     Route::get('/donate/{slug}', [DonationController::class, 'show'])->name('donate.show');
@@ -153,8 +152,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/surveys/{survey}/respond', [SurveyController::class, 'respond'])->name('surveys.respond');
 });
 
-Route::post('/webhooks/razorpay', [\App\Http\Controllers\Webhooks\RazorpayController::class, 'handle'])
-    ->name('webhooks.razorpay');
 
 Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/events', [AdminEventController::class, 'index'])->name('events.index');
