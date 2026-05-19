@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -8,6 +8,7 @@ import LikeButton from '@/Components/LikeButton.vue';
 import CommentThread from '@/Components/CommentThread.vue';
 import PostActionsMenu from '@/Components/PostActionsMenu.vue';
 import { useToast } from '@/Composables/useToast';
+import { useConfirm } from '@/Composables/useConfirm';
 import { renderMarkdown } from '@/lib/markdown';
 
 dayjs.extend(relativeTime);
@@ -17,7 +18,7 @@ const props = defineProps({
 });
 
 const { showToast } = useToast();
-const confirmingDelete = ref(false);
+const { confirm } = useConfirm();
 
 const rendered = computed(() => renderMarkdown(props.post.body));
 
@@ -31,13 +32,18 @@ function unpin() {
         preserveScroll: true, preserveState: true, only: ['posts'],
     });
 }
-function destroy() {
+async function destroy() {
+    const ok = await confirm({
+        title: 'Delete this post?',
+        body: 'This can\'t be undone. Comments and likes are removed too.',
+        confirmLabel: 'Delete',
+    });
+    if (!ok) return;
     router.delete(route('posts.destroy', props.post.id), {
         preserveScroll: true,
         preserveState: true,
         only: ['posts'],
-        onSuccess: () => showToast('Deleted.'),
-        onFinish: () => (confirmingDelete.value = false),
+        onSuccess: () => showToast('Post deleted.'),
     });
 }
 </script>
@@ -71,7 +77,7 @@ function destroy() {
                         :post="post"
                         @pin="pin"
                         @unpin="unpin"
-                        @delete="confirmingDelete = true"
+                        @delete="destroy"
                     />
                 </div>
 
@@ -103,40 +109,5 @@ function destroy() {
             </div>
         </div>
 
-        <!-- Delete confirmation -->
-        <Transition
-            enter-active-class="transition duration-200 ease-out"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-        >
-            <div
-                v-if="confirmingDelete"
-                class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-                @click.self="confirmingDelete = false"
-            >
-                <div class="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
-                    <h3 class="text-base font-semibold text-gray-900">Delete this post?</h3>
-                    <p class="mt-1 text-sm text-gray-600">
-                        This can't be undone. Comments and likes are removed too.
-                    </p>
-                    <div class="mt-5 flex justify-end gap-2">
-                        <button
-                            type="button"
-                            class="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
-                            @click="confirmingDelete = false"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="button"
-                            class="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
-                            @click="destroy"
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </Transition>
     </article>
 </template>

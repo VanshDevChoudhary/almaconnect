@@ -4,6 +4,7 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { useToast } from '@/Composables/useToast';
+import { useConfirm } from '@/Composables/useConfirm';
 
 const props = defineProps({
     stories: { type: Array, default: () => [] },
@@ -11,6 +12,7 @@ const props = defineProps({
 });
 
 const { showToast } = useToast();
+const { confirm } = useConfirm();
 const status = ref(props.filters.status || 'all');
 
 function filter() {
@@ -24,8 +26,13 @@ function approve(id) {
 function reject(id) {
     router.post(route('admin.stories.reject', id), {}, { preserveScroll: true, onSuccess: () => showToast('Story rejected.') });
 }
-function destroy(id) {
-    if (!confirm('Delete this story?')) return;
+async function destroy(id) {
+    const ok = await confirm({
+        title: 'Delete this story?',
+        body: 'This cannot be undone.',
+        confirmLabel: 'Delete',
+    });
+    if (!ok) return;
     router.delete(route('admin.stories.destroy', id), { preserveScroll: true, onSuccess: () => showToast('Story deleted.') });
 }
 

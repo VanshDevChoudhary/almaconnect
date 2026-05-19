@@ -24,7 +24,9 @@
     <meta name="twitter:description" content="Reconnect, mentor, give back. The alumni network for institute graduates.">
     <meta name="twitter:image" content="{{ url('/og-image.jpg') }}">
 
-    {{-- Favicons (placeholders — replace with real assets) --}}
+    {{-- PWA + Favicons --}}
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 
     @vite(['resources/css/app.css', 'resources/js/landing.js'])

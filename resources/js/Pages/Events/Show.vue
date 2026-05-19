@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -7,6 +7,7 @@ import RSVPCard from '@/Components/RSVPCard.vue';
 import AttendeesGrid from '@/Components/AttendeesGrid.vue';
 import { renderMarkdown } from '@/lib/markdown';
 import { useToast } from '@/Composables/useToast';
+import { useConfirm } from '@/Composables/useConfirm';
 
 const props = defineProps({
     event: { type: Object, required: true },
@@ -17,7 +18,7 @@ const props = defineProps({
 });
 
 const { showToast } = useToast();
-const confirmingDelete = ref(false);
+const { confirm } = useConfirm();
 
 const start = computed(() => dayjs(props.event.starts_at));
 const end = computed(() => (props.event.ends_at ? dayjs(props.event.ends_at) : null));
@@ -29,10 +30,18 @@ const whenLabel = computed(() => {
 const rendered = computed(() => renderMarkdown(props.event.description));
 const rsvpTotal = computed(() => props.event.going_count + props.event.interested_count);
 
-function destroy() {
+async function destroy() {
+    const n = rsvpTotal.value;
+    const ok = await confirm({
+        title: 'Delete this event?',
+        body: n > 0
+            ? `This event has ${n} RSVP${n === 1 ? '' : 's'}. Deleting removes the event and all RSVPs. This can't be undone.`
+            : "This can't be undone.",
+        confirmLabel: 'Delete',
+    });
+    if (!ok) return;
     router.delete(route('admin.events.destroy', props.event.slug), {
         onSuccess: () => showToast('Event deleted.'),
-        onFinish: () => (confirmingDelete.value = false),
     });
 }
 </script>
@@ -57,7 +66,7 @@ function destroy() {
                         <button
                             type="button"
                             class="rounded-lg border border-red-300 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50"
-                            @click="confirmingDelete = true"
+                            @click="destroy"
                         >
                             Delete
                         </button>
@@ -104,40 +113,5 @@ function destroy() {
             </div>
         </div>
 
-        <Transition
-            enter-active-class="transition duration-200 ease-out"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-        >
-            <div
-                v-if="confirmingDelete"
-                class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-                @click.self="confirmingDelete = false"
-            >
-                <div class="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
-                    <h3 class="text-base font-semibold text-gray-900">Delete this event?</h3>
-                    <p class="mt-1 text-sm text-gray-600">
-                        This event has {{ rsvpTotal }} RSVP{{ rsvpTotal === 1 ? '' : 's' }}.
-                        Deleting removes the event and all RSVPs. This can't be undone.
-                    </p>
-                    <div class="mt-5 flex justify-end gap-2">
-                        <button
-                            type="button"
-                            class="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
-                            @click="confirmingDelete = false"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="button"
-                            class="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
-                            @click="destroy"
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </Transition>
     </AuthenticatedLayout>
 </template>

@@ -71,9 +71,13 @@ watch(activeTab, () => nextTick(animate));
                             :event="e"
                             data-event
                         />
-                        <p v-if="!upcoming.length" class="py-16 text-center text-sm text-gray-500">
-                            No upcoming events. Check back soon.
-                        </p>
+                        <div v-if="!upcoming.length" class="py-16 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                            </svg>
+                            <h3 class="mt-3 text-sm font-semibold text-gray-900">No upcoming events</h3>
+                            <p class="mt-1 text-sm text-gray-500">Check back soon — new events will appear here.</p>
+                        </div>
                     </div>
 
                     <div v-else-if="activeTab === 'past'" class="space-y-4">
@@ -83,9 +87,13 @@ watch(activeTab, () => nextTick(animate));
                             :event="e"
                             data-event
                         />
-                        <p v-if="!past.length" class="py-16 text-center text-sm text-gray-500">
-                            No past events yet.
-                        </p>
+                        <div v-if="!past.length" class="py-16 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <h3 class="mt-3 text-sm font-semibold text-gray-900">No past events yet</h3>
+                            <p class="mt-1 text-sm text-gray-500">Past events will appear here once they've concluded.</p>
+                        </div>
                     </div>
 
                     <EventCalendar v-else :events="allEvents" />

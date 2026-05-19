@@ -30,6 +30,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/offline', fn () => view('offline'))->name('offline');
+
 Route::get('/', function () {
     if (auth()->check()) {
         return redirect('/dashboard');

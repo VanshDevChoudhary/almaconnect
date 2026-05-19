@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AccountApprovedMail;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -51,8 +53,14 @@ class UserController extends Controller
 
     public function approve(Request $request, User $user): RedirectResponse
     {
+        $wasNotApproved = $user->status !== 'approved';
         $user->update(['status' => 'approved']);
-        return back();
+
+        if ($wasNotApproved) {
+            Mail::to($user->email)->send(new AccountApprovedMail($user));
+        }
+
+        return back()->with('success', "Account approved — {$user->name} has been notified by email.");
     }
 
     public function reject(Request $request, User $user): RedirectResponse
@@ -63,8 +71,15 @@ class UserController extends Controller
 
     public function bulkApprove(Request $request): RedirectResponse
     {
-        User::whereIn('id', (array) $request->input('ids', []))->update(['status' => 'approved']);
-        return back()->with('success', 'Users approved.');
+        $ids = (array) $request->input('ids', []);
+        $users = User::whereIn('id', $ids)->where('status', '!=', 'approved')->get();
+        User::whereIn('id', $ids)->update(['status' => 'approved']);
+
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new AccountApprovedMail($user));
+        }
+
+        return back()->with('success', count($users).' user(s) approved and notified by email.');
     }
 
     public function bulkReject(Request $request): RedirectResponse

@@ -4,12 +4,14 @@ import { Head, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import UserAvatar from '@/Components/UserAvatar.vue';
 import { useToast } from '@/Composables/useToast';
+import { useConfirm } from '@/Composables/useConfirm';
 
 const props = defineProps({
     pending: { type: Array, default: () => [] },
 });
 
 const { showToast } = useToast();
+const { confirm } = useConfirm();
 const selected = ref([]);
 
 function approve(id) {
@@ -18,8 +20,13 @@ function approve(id) {
         onSuccess: () => showToast('Approved.'),
     });
 }
-function reject(id) {
-    if (!confirm('Reject this user?')) return;
+async function reject(id) {
+    const ok = await confirm({
+        title: 'Reject this user?',
+        body: 'The user will be notified their account was rejected.',
+        confirmLabel: 'Reject',
+    });
+    if (!ok) return;
     router.post(route('admin.users.reject', id), {}, {
         preserveScroll: true,
         onSuccess: () => showToast('Rejected.'),
@@ -32,8 +39,14 @@ function bulkApprove() {
         onSuccess: () => { selected.value = []; showToast('Users approved.'); },
     });
 }
-function bulkReject() {
-    if (!selected.value.length || !confirm('Reject selected users?')) return;
+async function bulkReject() {
+    if (!selected.value.length) return;
+    const ok = await confirm({
+        title: `Reject ${selected.value.length} users?`,
+        body: 'All selected users will be rejected. This cannot be undone.',
+        confirmLabel: 'Reject all',
+    });
+    if (!ok) return;
     router.post(route('admin.users.bulk-reject'), { ids: selected.value }, {
         preserveScroll: true,
         onSuccess: () => { selected.value = []; showToast('Users rejected.'); },

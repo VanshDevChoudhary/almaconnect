@@ -89,9 +89,16 @@ onUnmounted(() => stop?.());
                         <StoryCard v-for="s in stories" :key="s.slug" :story="s" data-story />
                     </div>
 
-                    <p v-if="!featured" class="py-16 text-center text-sm text-gray-500">
-                        No stories in this category yet.
-                    </p>
+                    <div v-if="!featured && !stories.length" class="py-16 text-center">
+                        <svg class="mx-auto h-14 w-14 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                        </svg>
+                        <h3 class="mt-3 text-base font-semibold text-gray-900">No stories yet</h3>
+                        <p class="mt-1 text-sm text-gray-500">Be the first to share yours.</p>
+                        <Link v-if="canSubmit" :href="route('stories.submit')" class="mt-4 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                            Submit your story
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import DirectoryPagination from '@/Components/DirectoryPagination.vue';
 import { useToast } from '@/Composables/useToast';
+import { useConfirm } from '@/Composables/useConfirm';
 
 const props = defineProps({
     feedback: { type: Object, required: true },
@@ -12,6 +13,7 @@ const props = defineProps({
 });
 
 const { showToast } = useToast();
+const { confirm } = useConfirm();
 const f = reactive({ ...props.filters });
 const expanded = ref(null);
 
@@ -30,8 +32,13 @@ function toggle(id) {
     });
 }
 
-function destroy(id) {
-    if (!confirm('Delete this feedback?')) return;
+async function destroy(id) {
+    const ok = await confirm({
+        title: 'Delete this feedback?',
+        body: 'This cannot be undone.',
+        confirmLabel: 'Delete',
+    });
+    if (!ok) return;
     router.delete(route('admin.feedback.destroy', id), {
         preserveScroll: true,
         onSuccess: () => showToast('Deleted.'),

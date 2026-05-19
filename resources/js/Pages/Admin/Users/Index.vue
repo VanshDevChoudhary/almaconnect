@@ -6,6 +6,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
 import UserAvatar from '@/Components/UserAvatar.vue';
 import DirectoryPagination from '@/Components/DirectoryPagination.vue';
 import { useToast } from '@/Composables/useToast';
+import { useConfirm } from '@/Composables/useConfirm';
 
 const props = defineProps({
     users: { type: Object, required: true },
@@ -13,6 +14,7 @@ const props = defineProps({
 });
 
 const { showToast } = useToast();
+const { confirm } = useConfirm();
 const f = reactive({ ...props.filters });
 
 function apply() {
@@ -23,8 +25,13 @@ function apply() {
     }, { preserveState: true, preserveScroll: true, replace: true });
 }
 
-function destroy(id) {
-    if (!confirm('Delete this user? This cannot be undone.')) return;
+async function destroy(id) {
+    const ok = await confirm({
+        title: 'Delete this user?',
+        body: 'This permanently removes the user and all their data. This cannot be undone.',
+        confirmLabel: 'Delete user',
+    });
+    if (!ok) return;
     router.delete(route('admin.users.destroy', id), {
         preserveScroll: true,
         onSuccess: () => showToast('User deleted.'),

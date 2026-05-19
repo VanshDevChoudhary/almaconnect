@@ -9,7 +9,7 @@ useAuthAnimation(card);
 
 <template>
     <div
-        class="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-50 via-white to-indigo-50 px-4 py-12"
+        class="flex min-h-screen flex-col items-center bg-gradient-to-br from-gray-50 via-white to-indigo-50 px-4 py-12 sm:justify-center"
     >
         <Link
             href="/"

@@ -1,9 +1,10 @@
 <script setup>
-import { ref, reactive, watch } from 'vue';
-import { Head, router, usePage } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { Head, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import DirectoryPagination from '@/Components/DirectoryPagination.vue';
 import { useToast } from '@/Composables/useToast';
+import { useConfirm } from '@/Composables/useConfirm';
 
 const props = defineProps({
     entries: { type: Object, required: true },
@@ -11,14 +12,12 @@ const props = defineProps({
     filters: { type: Object, default: () => ({}) },
 });
 
-const page = usePage();
 const { showToast } = useToast();
+const { confirm } = useConfirm();
 const q = ref(props.filters.q || '');
 const replaceAll = ref(false);
 const file = ref(null);
 const uploading = ref(false);
-
-watch(() => page.props.flash?.success, (v) => { if (v) showToast(v); }, { immediate: true });
 
 function search() {
     router.get(route('admin.roster.index'), { q: q.value || undefined }, {
@@ -26,8 +25,16 @@ function search() {
     });
 }
 
-function upload() {
+async function upload() {
     if (!file.value) return;
+    if (replaceAll.value) {
+        const ok = await confirm({
+            title: 'Replace all roster entries?',
+            body: 'This will delete every existing entry and replace them with the new CSV. This cannot be undone.',
+            confirmLabel: 'Yes, replace all',
+        });
+        if (!ok) return;
+    }
     uploading.value = true;
     const form = new FormData();
     form.append('csv', file.value);
@@ -38,7 +45,13 @@ function upload() {
     });
 }
 
-function destroy(id) {
+async function destroy(id) {
+    const ok = await confirm({
+        title: 'Remove this roster entry?',
+        body: 'This cannot be undone.',
+        confirmLabel: 'Remove',
+    });
+    if (!ok) return;
     router.delete(route('admin.roster.destroy', id), { preserveScroll: true });
 }
 </script>

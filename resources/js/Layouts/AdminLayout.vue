@@ -1,14 +1,27 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import Toast from '@/Components/Toast.vue';
+import ConfirmModal from '@/Components/ConfirmModal.vue';
+import { useToast } from '@/Composables/useToast';
 
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 const counts = computed(() => page.props.adminCounts ?? {});
 const sidebarOpen = ref(false);
+const { showToast } = useToast();
+
+watch(
+    () => page.props.flash,
+    (flash) => {
+        if (flash?.success) showToast(flash.success, 'success');
+        if (flash?.error) showToast(flash.error, 'error');
+        if (flash?.info) showToast(flash.info, 'info');
+        if (flash?.warning) showToast(flash.warning, 'warning');
+    },
+);
 
 const navItems = [
     { label: 'Dashboard', route: 'admin.index', icon: '📊' },
@@ -117,5 +130,6 @@ function isActive(routeName) {
         </div>
 
         <Toast />
+        <ConfirmModal />
     </div>
 </template>

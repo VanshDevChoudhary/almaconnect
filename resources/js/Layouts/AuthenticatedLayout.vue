@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -7,9 +8,23 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import FeedbackWidget from '@/Components/FeedbackWidget.vue';
 import Toast from '@/Components/Toast.vue';
-import { Link } from '@inertiajs/vue3';
+import ConfirmModal from '@/Components/ConfirmModal.vue';
+import InstallPrompt from '@/Components/InstallPrompt.vue';
+import { useToast } from '@/Composables/useToast';
 
 const showingNavigationDropdown = ref(false);
+const page = usePage();
+const { showToast } = useToast();
+
+watch(
+    () => page.props.flash,
+    (flash) => {
+        if (flash?.success) showToast(flash.success, 'success');
+        if (flash?.error) showToast(flash.error, 'error');
+        if (flash?.info) showToast(flash.info, 'info');
+        if (flash?.warning) showToast(flash.warning, 'warning');
+    },
+);
 </script>
 
 <template>
@@ -287,6 +302,8 @@ const showingNavigationDropdown = ref(false);
             </main>
         </div>
         <Toast />
+        <ConfirmModal />
+        <InstallPrompt />
         <FeedbackWidget />
     </div>
 </template>
