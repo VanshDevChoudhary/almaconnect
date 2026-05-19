@@ -10,7 +10,7 @@ const isLogin = computed(() => page.component === 'Auth/Login');
     <div class="flex min-h-screen">
 
         <!-- ── Left: form panel ───────────────────────────────────── -->
-        <div class="flex w-full flex-col justify-center overflow-y-auto bg-white px-8 py-12 lg:w-1/2 xl:px-16">
+        <div class="flex w-full flex-col justify-center overflow-y-auto bg-white px-8 py-12 md:w-1/2 xl:px-16">
             <div class="mx-auto w-full max-w-sm">
 
                 <!-- Logo -->
@@ -29,7 +29,7 @@ const isLogin = computed(() => page.component === 'Auth/Login');
         </div>
 
         <!-- ── Right: decorative panel ───────────────────────────── -->
-        <div class="relative hidden overflow-hidden lg:flex lg:w-1/2 lg:flex-col lg:items-center lg:justify-center"
+        <div class="relative hidden overflow-hidden md:flex md:w-1/2 md:flex-col md:items-center md:justify-center"
              style="background: linear-gradient(145deg, #8b1627 0%, #6b0d1c 50%, #3d0813 100%)">
 
             <!-- Decorative circles -->
