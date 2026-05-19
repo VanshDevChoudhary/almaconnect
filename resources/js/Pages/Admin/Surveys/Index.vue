@@ -1,7 +1,7 @@
 ﻿<script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
-import { useToast } from '@/Composables/useToast';
+import { useToast } from '@/composables/useToast';
 
 defineProps({ surveys: { type: Array, default: () => [] } });
 

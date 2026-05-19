@@ -4,8 +4,8 @@ import { Head, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import DirectoryPagination from '@/Components/DirectoryPagination.vue';
-import { useToast } from '@/Composables/useToast';
-import { useConfirm } from '@/Composables/useConfirm';
+import { useToast } from '@/composables/useToast';
+import { useConfirm } from '@/composables/useConfirm';
 
 const props = defineProps({
     feedback: { type: Object, required: true },

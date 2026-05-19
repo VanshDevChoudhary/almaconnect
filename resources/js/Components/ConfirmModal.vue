@@ -1,6 +1,6 @@
 ﻿<script setup>
 import { ref, watch, nextTick, onMounted, onUnmounted } from 'vue';
-import { useConfirm } from '@/Composables/useConfirm';
+import { useConfirm } from '@/composables/useConfirm';
 
 const { state, handleConfirm, handleCancel } = useConfirm();
 const modalEl = ref(null);
