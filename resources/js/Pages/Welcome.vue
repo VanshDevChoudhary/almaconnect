@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -28,7 +28,7 @@ function handleImageError() {
 
 <template>
     <Head title="Welcome" />
-    <div class="bg-indigo-600 hidden" aria-hidden="true" data-tailwind-smoke></div>
+    <div class="bg-maroon-600 hidden" aria-hidden="true" data-tailwind-smoke></div>
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <img
             id="background"

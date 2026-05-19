@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -98,7 +98,7 @@ function submit() {
                         :class="[
                             'cursor-pointer rounded-lg border px-4 py-2 text-sm font-medium transition',
                             form.type === t.v
-                                ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
+                                ? 'border-maroon-600 bg-maroon-50 text-maroon-700'
                                 : 'border-gray-300 text-gray-700 hover:bg-gray-50',
                         ]"
                     >
@@ -111,7 +111,7 @@ function submit() {
             <div>
                 <div class="flex items-center justify-between">
                     <InputLabel for="description" value="Description (Markdown)" />
-                    <button type="button" class="text-xs text-indigo-600 hover:text-indigo-700" @click="showPreview = !showPreview">
+                    <button type="button" class="text-xs text-maroon-600 hover:text-maroon-700" @click="showPreview = !showPreview">
                         {{ showPreview ? 'Edit' : 'Preview' }}
                     </button>
                 </div>
@@ -120,7 +120,7 @@ function submit() {
                     id="description"
                     v-model="form.description"
                     rows="8"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                     required
                 ></textarea>
                 <div v-else class="prose prose-sm mt-1 max-w-none rounded-md border border-gray-200 bg-gray-50 p-3" v-html="rendered"></div>
@@ -148,7 +148,7 @@ function submit() {
                 </div>
                 <div>
                     <InputLabel for="salary_currency" value="Currency" />
-                    <select id="salary_currency" v-model="form.salary_currency" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <select id="salary_currency" v-model="form.salary_currency" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                         <option>INR</option>
                         <option>USD</option>
                         <option>EUR</option>
@@ -183,7 +183,7 @@ function submit() {
                     id="expires_at"
                     v-model="form.expires_at"
                     type="date"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                     required
                 />
                 <InputError class="mt-2" :message="form.errors.expires_at" />
@@ -193,7 +193,7 @@ function submit() {
         <button
             type="submit"
             :disabled="form.processing"
-            class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
+            class="rounded-lg bg-maroon-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60"
         >
             {{ form.processing ? 'Saving…' : mode === 'edit' ? 'Update job' : 'Post job' }}
         </button>

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { useToast } from '@/Composables/useToast';
@@ -22,7 +22,7 @@ function destroy(id) {
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Surveys</h2>
-                <Link :href="route('admin.surveys.create')" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                <Link :href="route('admin.surveys.create')" class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700">
                     + New survey
                 </Link>
             </div>
@@ -42,7 +42,7 @@ function destroy(id) {
                                 <td class="px-4 py-3 text-gray-600">{{ s.respondent_count }}</td>
                                 <td class="px-4 py-3"><span :class="s.is_active ? 'text-green-700' : 'text-gray-400'">{{ s.is_active ? 'Yes' : 'No' }}</span></td>
                                 <td class="px-4 py-3 text-right">
-                                    <Link :href="route('admin.surveys.responses', s.id)" class="text-indigo-600 hover:text-indigo-700">Responses</Link>
+                                    <Link :href="route('admin.surveys.responses', s.id)" class="text-maroon-600 hover:text-maroon-700">Responses</Link>
                                     <Link :href="route('admin.surveys.edit', s.id)" class="ml-3 text-gray-600 hover:text-gray-900">Edit</Link>
                                     <button type="button" class="ml-3 text-red-600 hover:text-red-700" @click="destroy(s.id)">Delete</button>
                                 </td>

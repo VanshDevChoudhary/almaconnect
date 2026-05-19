@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -38,7 +38,7 @@ const badge = {
                         <Link
                             v-if="s.status === 'published'"
                             :href="route('stories.show', s.slug)"
-                            class="text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                            class="text-sm font-medium text-maroon-600 hover:text-maroon-700"
                         >
                             View
                         </Link>
@@ -50,7 +50,7 @@ const badge = {
                     </svg>
                     <h3 class="mt-3 text-sm font-semibold text-gray-900">You haven't submitted a story</h3>
                     <p class="mt-1 text-sm text-gray-500">Inspire others with your journey.</p>
-                    <Link :href="route('stories.submit')" class="mt-4 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                    <Link :href="route('stories.submit')" class="mt-4 inline-block rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700">
                         Submit a story
                     </Link>
                 </div>

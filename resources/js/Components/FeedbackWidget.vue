@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { useToast } from '@/Composables/useToast';
@@ -68,7 +68,7 @@ defineExpose({ openModal: () => (open.value = true) });
             <button
                 v-if="visible && !open"
                 type="button"
-                class="fixed bottom-5 right-5 z-40 rounded-full bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-indigo-700"
+                class="fixed bottom-5 right-5 z-40 rounded-full bg-maroon-600 px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-maroon-700"
                 title="Send feedback"
                 @click="open = true"
             >
@@ -106,7 +106,7 @@ defineExpose({ openModal: () => (open.value = true) });
                                     :class="[
                                         'cursor-pointer rounded-lg border px-3 py-1.5 text-sm font-medium transition',
                                         form.category === c.v
-                                            ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
+                                            ? 'border-maroon-600 bg-maroon-50 text-maroon-700'
                                             : 'border-gray-300 text-gray-700 hover:bg-gray-50',
                                     ]"
                                 >
@@ -117,24 +117,24 @@ defineExpose({ openModal: () => (open.value = true) });
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Name</label>
-                            <input v-model="form.name" type="text" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+                            <input v-model="form.name" type="text" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500" />
                             <p v-if="errors.name" class="mt-1 text-xs text-red-600">{{ errors.name[0] }}</p>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Email</label>
-                            <input v-model="form.email" type="email" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+                            <input v-model="form.email" type="email" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500" />
                             <p v-if="errors.email" class="mt-1 text-xs text-red-600">{{ errors.email[0] }}</p>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Message</label>
-                            <textarea v-model="form.message" rows="4" maxlength="5000" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                            <textarea v-model="form.message" rows="4" maxlength="5000" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500"></textarea>
                             <div class="mt-1 flex justify-between text-xs text-gray-400">
                                 <span v-if="errors.message" class="text-red-600">{{ errors.message[0] }}</span>
                                 <span>{{ form.message.length }} / 5000</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <button type="submit" :disabled="processing" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60">
+                            <button type="submit" :disabled="processing" class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60">
                                 {{ processing ? 'Sending…' : 'Send feedback' }}
                             </button>
                             <button type="button" class="text-sm text-gray-500 hover:text-gray-900" @click="open = false">Cancel</button>

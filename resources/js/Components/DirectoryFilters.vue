@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 
 const props = defineProps({
@@ -62,7 +62,7 @@ function isActive(key, value) {
             <button
                 v-if="appliedCount"
                 type="button"
-                class="text-xs font-medium text-indigo-600 hover:text-indigo-700"
+                class="text-xs font-medium text-maroon-600 hover:text-maroon-700"
                 @click="emit('clear')"
             >
                 Clear all
@@ -83,7 +83,7 @@ function isActive(key, value) {
                 v-model="citySearch"
                 type="text"
                 placeholder="Search cities…"
-                class="mt-2 block w-full rounded-md border-gray-300 py-1.5 text-xs shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="mt-2 block w-full rounded-md border-gray-300 py-1.5 text-xs shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
             />
 
             <div class="mt-2 flex flex-wrap gap-2">
@@ -94,7 +94,7 @@ function isActive(key, value) {
                     :class="[
                         'rounded-full px-3 py-1 text-xs font-medium transition duration-150 active:scale-95',
                         isActive(section.key, e.value)
-                            ? 'bg-indigo-600 text-white'
+                            ? 'bg-maroon-600 text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
                     ]"
                     @click="emit('toggle', section.key, e.value)"

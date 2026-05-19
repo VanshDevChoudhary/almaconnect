@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, watch } from 'vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -86,7 +86,7 @@ watch(
                                     :class="[
                                         'cursor-pointer rounded-lg border px-3 py-1.5 text-sm font-medium transition',
                                         form.category === c.v
-                                            ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
+                                            ? 'border-maroon-600 bg-maroon-50 text-maroon-700'
                                             : 'border-gray-300 text-gray-700 hover:bg-gray-50',
                                     ]"
                                 >
@@ -107,7 +107,7 @@ watch(
                         <div>
                             <div class="flex items-center justify-between">
                                 <InputLabel for="body" value="Your story (Markdown)" />
-                                <button type="button" class="text-xs text-indigo-600 hover:text-indigo-700" @click="showPreview = !showPreview">
+                                <button type="button" class="text-xs text-maroon-600 hover:text-maroon-700" @click="showPreview = !showPreview">
                                     {{ showPreview ? 'Edit' : 'Preview' }}
                                 </button>
                             </div>
@@ -116,7 +116,7 @@ watch(
                                 id="body"
                                 v-model="form.body"
                                 rows="14"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                                 required
                             ></textarea>
                             <div v-else class="prose prose-sm mt-1 max-w-none rounded-md border border-gray-200 bg-gray-50 p-4" v-html="rendered"></div>
@@ -129,7 +129,7 @@ watch(
                         <button
                             type="submit"
                             :disabled="form.processing"
-                            class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
+                            class="rounded-lg bg-maroon-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60"
                         >
                             {{ form.processing ? 'Submitting…' : 'Submit for review' }}
                         </button>

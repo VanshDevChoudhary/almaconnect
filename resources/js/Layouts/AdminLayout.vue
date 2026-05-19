@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, watch } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -63,9 +63,9 @@ function isActive(routeName) {
         >
             <div class="flex h-16 items-center gap-2 border-b border-gray-200 px-5">
                 <Link href="/" class="text-lg font-bold text-gray-900">
-                    Alma<span class="text-indigo-600">Connect</span>
+                    Alma<span class="text-maroon-600">Connect</span>
                 </Link>
-                <span class="rounded-md bg-indigo-100 px-1.5 py-0.5 text-xs font-semibold text-indigo-700">Admin</span>
+                <span class="rounded-md bg-maroon-100 px-1.5 py-0.5 text-xs font-semibold text-maroon-700">Admin</span>
             </div>
 
             <nav class="flex-1 overflow-y-auto py-3">
@@ -75,7 +75,7 @@ function isActive(routeName) {
                         :class="[
                             'flex items-center justify-between px-4 py-2 text-sm font-medium transition-colors',
                             isActive(item.route)
-                                ? 'bg-indigo-50 text-indigo-700'
+                                ? 'bg-maroon-50 text-maroon-700'
                                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900',
                         ]"
                         @click="sidebarOpen = false"

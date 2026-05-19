@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import GoogleButton from '@/Components/GoogleButton.vue';
@@ -107,7 +107,7 @@ const submit = () => {
                 type="submit"
                 :class="{ 'opacity-60': form.processing }"
                 :disabled="form.processing"
-                class="flex w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                class="flex w-full items-center justify-center rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-maroon-700 focus:outline-none focus:ring-2 focus:ring-maroon-500 focus:ring-offset-2"
             >
                 <svg
                     v-if="form.processing"
@@ -125,7 +125,7 @@ const submit = () => {
                 Don't have an account?
                 <Link
                     :href="route('register')"
-                    class="font-medium text-indigo-600 hover:text-indigo-700"
+                    class="font-medium text-maroon-600 hover:text-maroon-700"
                 >
                     Register
                 </Link>
@@ -136,7 +136,7 @@ const submit = () => {
             <svg class="h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 11.5c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.75h-.152c-3.196 0-6.1-1.248-8.25-3.286z" />
             </svg>
-            <Link href="/admin" class="text-xs font-medium text-indigo-500 hover:text-indigo-700">
+            <Link href="/admin" class="text-xs font-medium text-maroon-500 hover:text-maroon-700">
                 Admin panel →
             </Link>
         </div>

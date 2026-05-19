@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -22,7 +22,7 @@ defineProps({
                 :class="[
                     'rounded-md px-3 py-1.5 text-sm transition',
                     link.active
-                        ? 'bg-indigo-600 text-white'
+                        ? 'bg-maroon-600 text-white'
                         : 'text-gray-700 hover:bg-gray-100',
                 ]"
                 v-html="link.label"

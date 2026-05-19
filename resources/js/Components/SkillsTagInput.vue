@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 
 const props = defineProps({
@@ -49,7 +49,7 @@ function onBackspace() {
 <template>
     <div>
         <div
-            class="flex flex-wrap items-center gap-2 rounded-md border border-gray-300 p-2 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500"
+            class="flex flex-wrap items-center gap-2 rounded-md border border-gray-300 p-2 focus-within:border-maroon-500 focus-within:ring-1 focus-within:ring-maroon-500"
         >
             <TransitionGroup
                 enter-active-class="transition duration-200 ease-out"
@@ -62,12 +62,12 @@ function onBackspace() {
                 <span
                     v-for="(skill, i) in modelValue"
                     :key="skill"
-                    class="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700"
+                    class="inline-flex items-center gap-1 rounded-full bg-maroon-50 px-3 py-1 text-sm font-medium text-maroon-700"
                 >
                     {{ skill }}
                     <button
                         type="button"
-                        class="text-indigo-400 hover:text-indigo-700"
+                        class="text-maroon-400 hover:text-maroon-700"
                         @click="removeAt(i)"
                         aria-label="Remove skill"
                     >

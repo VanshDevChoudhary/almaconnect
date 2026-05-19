@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -30,7 +30,7 @@ const posterMeta = computed(() => {
         :href="route('jobs.show', job.id)"
         class="block rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md"
     >
-        <h3 class="text-lg font-semibold text-gray-900 group-hover:text-indigo-600">
+        <h3 class="text-lg font-semibold text-gray-900 group-hover:text-maroon-600">
             {{ job.title }}
         </h3>
         <p class="mt-0.5 text-sm text-gray-600">
@@ -38,7 +38,7 @@ const posterMeta = computed(() => {
         </p>
 
         <div class="mt-3 flex flex-wrap items-center gap-2 text-sm">
-            <span class="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700">
+            <span class="rounded-full bg-maroon-50 px-2.5 py-0.5 text-xs font-medium text-maroon-700">
                 {{ JOB_TYPE_LABELS[job.type] || job.type }}
             </span>
             <span v-if="salary" class="font-medium text-gray-700">{{ salary }}</span>

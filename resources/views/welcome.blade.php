@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
@@ -41,7 +41,7 @@
             100% { background-position: 0% 50%; }
         }
         .hero-mesh {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 35%, #ec4899 65%, #4f46e5 100%);
+            background: linear-gradient(135deg, #8b1627 0%, #6b0d1c 35%, #3d0813 65%, #8b1627 100%);
             background-size: 400% 400%;
             animation: mesh-shift 20s linear infinite;
         }
@@ -70,19 +70,19 @@
 >
     <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <a href="/" class="flex items-center gap-2 text-xl font-bold text-white" :class="solid ? 'text-gray-900' : 'text-white'">
-            🎓 <span>Alma<span class="text-indigo-400" :class="solid ? 'text-indigo-600' : 'text-indigo-400'">Connect</span></span>
+            🎓 <span>Alma<span class="text-maroon-400" :class="solid ? 'text-maroon-600' : 'text-maroon-400'">Connect</span></span>
         </a>
 
         {{-- Desktop nav --}}
         <div class="hidden items-center gap-8 text-sm font-medium md:flex"
              :class="solid ? 'text-gray-700' : 'text-white/90'">
-            <a href="#features" class="hover:text-indigo-500 transition">Features</a>
-            <a href="#stories" class="hover:text-indigo-500 transition">Stories</a>
-            <a href="#faq" class="hover:text-indigo-500 transition">FAQ</a>
+            <a href="#features" class="hover:text-maroon-500 transition">Features</a>
+            <a href="#stories" class="hover:text-maroon-500 transition">Stories</a>
+            <a href="#faq" class="hover:text-maroon-500 transition">FAQ</a>
             <a href="{{ route('login') }}" class="rounded-lg border px-4 py-1.5 transition"
                :class="solid ? 'border-gray-300 hover:bg-gray-50' : 'border-white/40 hover:border-white'">Log in</a>
             <a href="{{ route('register') }}"
-               class="rounded-lg bg-indigo-600 px-4 py-1.5 text-white shadow-sm transition hover:bg-indigo-700">
+               class="rounded-lg bg-maroon-600 px-4 py-1.5 text-white shadow-sm transition hover:bg-maroon-700">
                 Get started
             </a>
         </div>
@@ -128,7 +128,7 @@
             <a href="#faq" class="rounded-md px-3 py-2.5 hover:bg-gray-50" @click="mobileOpen=false">FAQ</a>
             <hr class="my-2 border-gray-100">
             <a href="{{ route('login') }}" class="rounded-md px-3 py-2.5 hover:bg-gray-50">Log in</a>
-            <a href="{{ route('register') }}" class="rounded-lg bg-indigo-600 px-3 py-2.5 text-center text-white hover:bg-indigo-700">Get started</a>
+            <a href="{{ route('register') }}" class="rounded-lg bg-maroon-600 px-3 py-2.5 text-center text-white hover:bg-maroon-700">Get started</a>
         </div>
     </div>
     <div x-show="mobileOpen" class="fixed inset-0 z-40 bg-black/40 md:hidden" @click="mobileOpen=false" style="display:none"></div>
@@ -155,7 +155,7 @@
 
                 <div class="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
                     <a data-hero-cta href="{{ route('register') }}"
-                       class="rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-indigo-700 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50">
+                       class="rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-maroon-700 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50">
                         Get started — it's free
                     </a>
                     <a data-hero-cta href="{{ route('login') }}"
@@ -207,9 +207,9 @@
                         <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-white/50">Recent Members</p>
                         <div class="space-y-2.5">
                             @foreach([
-                                ['name'=>'Rahul Sharma',  'meta'=>'CSE · Class of 2022', 'color'=>'bg-indigo-400'],
+                                ['name'=>'Rahul Sharma',  'meta'=>'CSE · Class of 2022', 'color'=>'bg-maroon-400'],
                                 ['name'=>'Anjali Patel',  'meta'=>'ECE · Class of 2021', 'color'=>'bg-pink-400'],
-                                ['name'=>'Nikhil Kumar',  'meta'=>'ME  · Class of 2020', 'color'=>'bg-violet-400'],
+                                ['name'=>'Nikhil Kumar',  'meta'=>'ME  · Class of 2020', 'color'=>'bg-maroon-400'],
                             ] as $m)
                             <div class="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2">
                                 <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full {{ $m['color'] }} text-xs font-bold text-white">
@@ -273,7 +273,7 @@
 
 <section class="bg-gray-50 py-20">
     <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Our community by the numbers</h2>
+        <h2 class="text-sm font-semibold uppercase tracking-widest text-maroon-600">Our community by the numbers</h2>
         <div class="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
             @foreach([
                 ['val' => $stats['alumni'],    'fmt' => 'number', 'final' => number_format($stats['alumni']),    'label' => 'Alumni approved'],
@@ -282,7 +282,7 @@
                 ['val' => $stats['mentors'],   'fmt' => 'number', 'final' => number_format($stats['mentors']),   'label' => 'Potential mentors'],
             ] as $s)
             <div class="rounded-xl bg-white p-6 shadow-sm">
-                <p class="text-4xl font-bold text-indigo-600"
+                <p class="text-4xl font-bold text-maroon-600"
                    data-counter="{{ $s['val'] }}"
                    data-format="{{ $s['fmt'] }}"
                    data-final="{{ $s['final'] }}">
@@ -330,7 +330,7 @@
             ] as $f)
             <article data-feature-card
                 class="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-                <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-50 text-gray-500 transition-colors duration-200 group-hover:bg-indigo-100 group-hover:text-indigo-600">
+                <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-maroon-50 text-gray-500 transition-colors duration-200 group-hover:bg-maroon-100 group-hover:text-maroon-600">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                         {!! $f['icon'] !!}
                     </svg>
@@ -354,7 +354,7 @@
                 </h2>
                 <p class="mt-2 text-lg text-gray-600">Real journeys from our alumni.</p>
             </div>
-            <a href="{{ route('login') }}" class="hidden font-medium text-indigo-600 hover:text-indigo-700 md:block">
+            <a href="{{ route('login') }}" class="hidden font-medium text-maroon-600 hover:text-maroon-700 md:block">
                 See all stories →
             </a>
         </div>
@@ -381,7 +381,7 @@
                        class="group w-full shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:w-[calc(33.33%-1rem)]"
                        title="Log in to read: {{ e($story->headline) }}"
                     >
-                        <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600"
+                        <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-maroon-500 via-maroon-600 to-maroon-600"
                             @if($story->cover_image)
                             style="background-image: url('/storage/{{ $story->cover_image }}'); background-size: cover; background-position: center;"
                             @endif
@@ -396,7 +396,7 @@
                             @endif
                         </div>
                         <div class="p-4">
-                            <span class="text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                            <span class="text-xs font-semibold uppercase tracking-wide text-maroon-700">
                                 {{ $catlabels[$story->category] ?? $story->category }}
                             </span>
                             <h3 class="mt-1 font-semibold text-gray-900 leading-snug line-clamp-2">
@@ -484,7 +484,7 @@
                 class="px-5"
             >
                 <button
-                    class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                    class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-maroon-500"
                     @click="open = !open"
                     :aria-expanded="open"
                 >
@@ -515,7 +515,7 @@
 </section>
 
 {{-- ════════════════════════════════════════════════════ FINAL CTA ══ --}}
-<section data-reveal="up" class="bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 py-24 text-white">
+<section data-reveal="up" class="bg-gradient-to-br from-maroon-600 via-maroon-700 to-maroon-700 py-24 text-white">
     <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
             Ready to reconnect?
@@ -524,7 +524,7 @@
             Join {{ number_format($stats['alumni']) }} alumni already on AlmaConnect. It takes less than 2 minutes.
         </p>
         <a href="{{ route('register') }}"
-           class="mt-8 inline-block rounded-xl bg-white px-10 py-3.5 text-base font-semibold text-indigo-700 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50">
+           class="mt-8 inline-block rounded-xl bg-white px-10 py-3.5 text-base font-semibold text-maroon-700 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50">
             Create your account
         </a>
     </div>
@@ -636,7 +636,7 @@
                 <p class="text-sm font-medium text-gray-700">Category</p>
                 <div class="mt-2 flex gap-2">
                     <template x-for="c in ['bug','suggestion','general']">
-                        <label :class="cat===c ? 'border-indigo-600 bg-indigo-50 text-indigo-700' : 'border-gray-300 text-gray-700'"
+                        <label :class="cat===c ? 'border-maroon-600 bg-maroon-50 text-maroon-700' : 'border-gray-300 text-gray-700'"
                                class="cursor-pointer rounded-lg border px-3 py-1.5 text-sm font-medium transition">
                             <input type="radio" :value="c" x-model="cat" class="sr-only">
                             <span x-text="c.charAt(0).toUpperCase()+c.slice(1)"></span>
@@ -646,17 +646,17 @@
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Name</label>
-                <input x-model="name" type="text" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input x-model="name" type="text" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                 <p x-show="err.name" class="mt-1 text-xs text-red-600" x-text="(err.name||[])[0]"></p>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Email</label>
-                <input x-model="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <input x-model="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                 <p x-show="err.email" class="mt-1 text-xs text-red-600" x-text="(err.email||[])[0]"></p>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Message</label>
-                <textarea x-model="msg" rows="4" maxlength="5000" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                <textarea x-model="msg" rows="4" maxlength="5000" class="mt-1 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500"></textarea>
                 <div class="mt-0.5 flex justify-between text-xs text-gray-400">
                     <span x-show="err.message" class="text-red-600" x-text="(err.message||[])[0]"></span>
                     <span x-text="msg.length + ' / 5000'" class="ml-auto"></span>
@@ -664,7 +664,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <button type="submit" :disabled="sending"
-                    class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-60">
+                    class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700 disabled:opacity-60">
                     <span x-text="sending ? 'Sending…' : 'Send feedback'"></span>
                 </button>
                 <button type="button" @click="feedbackOpen = false" class="text-sm text-gray-500 hover:text-gray-900">Cancel</button>

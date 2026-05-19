@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -58,7 +58,7 @@ async function destroy(id) {
                         type="button"
                         :class="[
                             'pb-3 text-sm font-medium transition',
-                            tab === t.k ? 'border-b-2 border-indigo-600 text-indigo-600' : 'text-gray-500 hover:text-gray-700',
+                            tab === t.k ? 'border-b-2 border-maroon-600 text-maroon-600' : 'text-gray-500 hover:text-gray-700',
                         ]"
                         @click="tab = t.k"
                     >
@@ -73,7 +73,7 @@ async function destroy(id) {
                         class="flex items-center justify-between rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
                     >
                         <div>
-                            <Link :href="route('jobs.show', j.id)" class="font-medium text-gray-900 hover:text-indigo-600">
+                            <Link :href="route('jobs.show', j.id)" class="font-medium text-gray-900 hover:text-maroon-600">
                                 {{ j.title }}
                             </Link>
                             <p class="text-sm text-gray-500">
@@ -81,7 +81,7 @@ async function destroy(id) {
                             </p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <Link :href="route('jobs.edit', j.id)" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                            <Link :href="route('jobs.edit', j.id)" class="text-sm font-medium text-maroon-600 hover:text-maroon-700">
                                 Edit
                             </Link>
                             <button
@@ -101,7 +101,7 @@ async function destroy(id) {
                             {{ tab === 'active' ? "You haven't posted any jobs" : `No ${tab} jobs` }}
                         </h3>
                         <p v-if="tab === 'active'" class="mt-1 text-sm text-gray-500">Share an opportunity with the network.</p>
-                        <Link v-if="tab === 'active'" :href="route('jobs.create')" class="mt-4 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                        <Link v-if="tab === 'active'" :href="route('jobs.create')" class="mt-4 inline-block rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700">
                             Post a job
                         </Link>
                     </div>

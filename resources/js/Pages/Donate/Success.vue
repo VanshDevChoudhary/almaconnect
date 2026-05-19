@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -60,7 +60,7 @@ onMounted(() => {
                 <a
                     v-if="donation.status === 'success'"
                     :href="route('donate.receipt', donation.id)"
-                    class="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                    class="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700"
                 >
                     Download receipt PDF
                 </a>

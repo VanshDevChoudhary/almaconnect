@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, reactive, computed, onMounted, onUnmounted, nextTick } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -141,7 +141,7 @@ onUnmounted(() => {
                                 @click="showFilters = true"
                             >
                                 Filters
-                                <span v-if="appliedCount" class="text-indigo-600">· {{ appliedCount }}</span>
+                                <span v-if="appliedCount" class="text-maroon-600">· {{ appliedCount }}</span>
                             </button>
                         </div>
 
@@ -173,7 +173,7 @@ onUnmounted(() => {
                             </p>
                             <button
                                 type="button"
-                                class="mt-4 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+                                class="mt-4 rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700"
                                 @click="clearAll"
                             >
                                 Clear all filters
@@ -239,7 +239,7 @@ onUnmounted(() => {
                 <div class="border-t border-gray-200 p-4">
                     <button
                         type="button"
-                        class="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
+                        class="w-full rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-maroon-700"
                         @click="showFilters = false"
                     >
                         Show {{ total }} results

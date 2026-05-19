@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
                     ← All stories
                 </Link>
 
-                <span class="mt-6 inline-block rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                <span class="mt-6 inline-block rounded-full bg-maroon-50 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-maroon-700">
                     {{ CATEGORY_LABELS[story.category] || story.category }}
                 </span>
 
@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
                             <Link
                                 v-if="story.author.slug"
                                 :href="route('profile.show', story.author.slug)"
-                                class="mt-1 inline-block text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                                class="mt-1 inline-block text-sm font-medium text-maroon-600 hover:text-maroon-700"
                             >
                                 View profile →
                             </Link>

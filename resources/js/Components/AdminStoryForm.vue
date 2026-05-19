@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -55,14 +55,14 @@ function submit() {
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
                 <InputLabel for="user_id" value="Featured alumnus" />
-                <select id="user_id" v-model="form.user_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                <select id="user_id" v-model="form.user_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500" required>
                     <option v-for="a in alumni" :key="a.id" :value="a.id">{{ a.name }}</option>
                 </select>
                 <InputError class="mt-2" :message="form.errors.user_id" />
             </div>
             <div>
                 <InputLabel for="category" value="Category" />
-                <select id="category" v-model="form.category" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <select id="category" v-model="form.category" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                     <option value="entrepreneurship">Entrepreneurship</option>
                     <option value="research">Research</option>
                     <option value="social_impact">Social Impact</option>
@@ -80,23 +80,23 @@ function submit() {
         <div>
             <div class="flex items-center justify-between">
                 <InputLabel for="body" value="Body (Markdown)" />
-                <button type="button" class="text-xs text-indigo-600 hover:text-indigo-700" @click="showPreview = !showPreview">
+                <button type="button" class="text-xs text-maroon-600 hover:text-maroon-700" @click="showPreview = !showPreview">
                     {{ showPreview ? 'Edit' : 'Preview' }}
                 </button>
             </div>
-            <textarea v-if="!showPreview" id="body" v-model="form.body" rows="12" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required></textarea>
+            <textarea v-if="!showPreview" id="body" v-model="form.body" rows="12" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500" required></textarea>
             <div v-else class="prose prose-sm mt-1 max-w-none rounded-md border border-gray-200 bg-gray-50 p-4" v-html="rendered"></div>
             <InputError class="mt-2" :message="form.errors.body" />
         </div>
         <div class="max-w-xs">
             <InputLabel for="status" value="Status" />
-            <select id="status" v-model="form.status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            <select id="status" v-model="form.status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                 <option value="published">Published</option>
                 <option value="pending">Pending</option>
                 <option value="rejected">Rejected</option>
             </select>
         </div>
-        <button type="submit" :disabled="form.processing" class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60">
+        <button type="submit" :disabled="form.processing" class="rounded-lg bg-maroon-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60">
             {{ form.processing ? 'Saving…' : mode === 'edit' ? 'Update story' : 'Create story' }}
         </button>
     </form>

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { Head, Link, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { formatINR } from '@/lib/format';
@@ -22,7 +22,7 @@ function destroy(slug) {
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Manage campaigns</h2>
-                <Link :href="route('admin.campaigns.create')" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                <Link :href="route('admin.campaigns.create')" class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700">
                     + New campaign
                 </Link>
             </div>
@@ -44,7 +44,7 @@ function destroy(slug) {
                                     <span :class="c.is_active ? 'text-green-700' : 'text-gray-400'">{{ c.is_active ? 'Yes' : 'No' }}</span>
                                 </td>
                                 <td class="px-4 py-3 text-right">
-                                    <Link :href="route('admin.campaigns.edit', c.slug)" class="text-indigo-600 hover:text-indigo-700">Edit</Link>
+                                    <Link :href="route('admin.campaigns.edit', c.slug)" class="text-maroon-600 hover:text-maroon-700">Edit</Link>
                                     <button type="button" class="ml-3 text-red-600 hover:text-red-700" @click="destroy(c.slug)">Delete</button>
                                 </td>
                             </tr>

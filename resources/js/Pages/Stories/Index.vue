@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -61,7 +61,7 @@ onUnmounted(() => stop?.());
                     <Link
                         v-if="canSubmit"
                         :href="route('stories.submit')"
-                        class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+                        class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700"
                     >
                         Submit your story
                     </Link>
@@ -74,7 +74,7 @@ onUnmounted(() => stop?.());
                         type="button"
                         :class="[
                             'rounded-full px-4 py-1.5 text-sm font-medium transition active:scale-95',
-                            category === c.k ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+                            category === c.k ? 'bg-maroon-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
                         ]"
                         @click="setCategory(c.k)"
                     >
@@ -95,7 +95,7 @@ onUnmounted(() => stop?.());
                         </svg>
                         <h3 class="mt-3 text-base font-semibold text-gray-900">No stories yet</h3>
                         <p class="mt-1 text-sm text-gray-500">Be the first to share yours.</p>
-                        <Link v-if="canSubmit" :href="route('stories.submit')" class="mt-4 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                        <Link v-if="canSubmit" :href="route('stories.submit')" class="mt-4 inline-block rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700">
                             Submit your story
                         </Link>
                     </div>

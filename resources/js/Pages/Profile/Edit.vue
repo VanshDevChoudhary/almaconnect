@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted, watch } from 'vue';
 import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -204,7 +204,7 @@ watch(
                     <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
                         <div>
                             <InputLabel for="batch" value="Graduation year" />
-                            <select id="batch" v-model="form.batch" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select id="batch" v-model="form.batch" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                                 <option value="">—</option>
                                 <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
                             </select>
@@ -212,7 +212,7 @@ watch(
                         </div>
                         <div>
                             <InputLabel for="branch" value="Branch" />
-                            <select id="branch" v-model="form.branch" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select id="branch" v-model="form.branch" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                                 <option value="">—</option>
                                 <option v-for="b in branches" :key="b" :value="b">{{ b }}</option>
                             </select>
@@ -244,7 +244,7 @@ watch(
                         </div>
                         <div>
                             <InputLabel for="industry" value="Industry" />
-                            <select id="industry" v-model="form.industry" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select id="industry" v-model="form.industry" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500">
                                 <option value="">—</option>
                                 <option v-for="i in industries" :key="i" :value="i">{{ i }}</option>
                             </select>
@@ -266,7 +266,7 @@ watch(
                                 v-model="form.city"
                                 list="city-options"
                                 type="text"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                             />
                             <datalist id="city-options">
                                 <option v-for="c in cities" :key="c" :value="c" />
@@ -293,7 +293,7 @@ watch(
                             v-model="form.bio"
                             rows="5"
                             maxlength="2000"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                         ></textarea>
                         <div class="mt-1 flex justify-between text-xs text-gray-500">
                             <InputError :message="form.errors.bio" />
@@ -330,7 +330,7 @@ watch(
                     <button
                         type="button"
                         :disabled="form.processing"
-                        class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-indigo-700 disabled:opacity-60"
+                        class="rounded-lg bg-maroon-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-maroon-700 disabled:opacity-60"
                         @click="submit"
                     >
                         {{ form.processing ? 'Saving…' : 'Save changes' }}

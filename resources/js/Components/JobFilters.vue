@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { JOB_TYPE_LABELS } from '@/lib/format';
 
 const props = defineProps({
@@ -20,7 +20,7 @@ const hasFilters = () => props.selectedTypes.length > 0 || props.location !== ''
             <button
                 v-if="hasFilters()"
                 type="button"
-                class="text-xs font-medium text-indigo-600 hover:text-indigo-700"
+                class="text-xs font-medium text-maroon-600 hover:text-maroon-700"
                 @click="emit('clear')"
             >
                 Clear
@@ -37,7 +37,7 @@ const hasFilters = () => props.selectedTypes.length > 0 || props.location !== ''
                 >
                     <input
                         type="checkbox"
-                        class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        class="rounded border-gray-300 text-maroon-600 focus:ring-maroon-500"
                         :checked="selectedTypes.includes(t.value)"
                         @change="emit('toggle-type', t.value)"
                     />
@@ -52,7 +52,7 @@ const hasFilters = () => props.selectedTypes.length > 0 || props.location !== ''
                 :value="location"
                 type="text"
                 placeholder="e.g. Bangalore, Remote"
-                class="mt-2 block w-full rounded-md border-gray-300 py-1.5 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="mt-2 block w-full rounded-md border-gray-300 py-1.5 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                 @input="emit('update:location', $event.target.value)"
             />
         </div>

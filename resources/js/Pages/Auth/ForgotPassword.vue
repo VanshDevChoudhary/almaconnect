@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -60,7 +60,7 @@ const submit = () => {
                 type="submit"
                 :class="{ 'opacity-60': form.processing }"
                 :disabled="form.processing"
-                class="flex w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                class="flex w-full items-center justify-center rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition active:scale-[0.98] hover:bg-maroon-700 focus:outline-none focus:ring-2 focus:ring-maroon-500 focus:ring-offset-2"
             >
                 <svg
                     v-if="form.processing"
@@ -77,7 +77,7 @@ const submit = () => {
             <p data-auth-field class="text-center text-sm text-gray-600">
                 <Link
                     :href="route('login')"
-                    class="font-medium text-indigo-600 hover:text-indigo-700"
+                    class="font-medium text-maroon-600 hover:text-maroon-700"
                 >
                     Back to login
                 </Link>

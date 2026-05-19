@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { router, usePage } from '@inertiajs/vue3';
 import { useToast } from '@/Composables/useToast';
@@ -138,7 +138,7 @@ async function proceed() {
                             :class="[
                                 'rounded-lg border px-3 py-2 text-sm font-medium transition',
                                 customAmount === '' && amount === p
-                                    ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
+                                    ? 'border-maroon-600 bg-maroon-50 text-maroon-700'
                                     : 'border-gray-300 text-gray-700 hover:bg-gray-50',
                             ]"
                             @click="pickPreset(p)"
@@ -154,20 +154,20 @@ async function proceed() {
                             min="100"
                             max="1000000"
                             placeholder="Enter amount"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                         />
                         <p v-if="!validAmount" class="mt-1 text-xs text-red-600">
                             Amount must be between ₹100 and ₹10,00,000.
                         </p>
                     </div>
                     <label class="mt-4 flex items-center gap-2 text-sm text-gray-700">
-                        <input type="checkbox" v-model="isAnonymous" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                        <input type="checkbox" v-model="isAnonymous" class="rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
                         Make my donation anonymous
                     </label>
                     <button
                         type="button"
                         :disabled="!validAmount"
-                        class="mt-5 w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+                        class="mt-5 w-full rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-50"
                         @click="step = 2"
                     >
                         Continue
@@ -198,7 +198,7 @@ async function proceed() {
                         <button
                             type="button"
                             :disabled="processing"
-                            class="flex-1 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
+                            class="flex-1 rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60"
                             @click="proceed"
                         >
                             {{ processing ? 'Starting…' : 'Proceed to payment' }}

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref } from 'vue';
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -58,14 +58,14 @@ function leave() {
 
                 <div class="mt-3 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                     <div
-                        class="h-40 bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600"
+                        class="h-40 bg-gradient-to-r from-maroon-500 via-maroon-600 to-maroon-600"
                         :style="group.cover_image ? { backgroundImage: `url(/storage/${group.cover_image})`, backgroundSize: 'cover' } : {}"
                     ></div>
                     <div class="flex flex-wrap items-start justify-between gap-3 p-5">
                         <div>
                             <div class="flex items-center gap-2">
                                 <h1 class="text-xl font-bold text-gray-900">{{ group.name }}</h1>
-                                <span class="rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700">
+                                <span class="rounded-full bg-maroon-50 px-2 py-0.5 text-xs font-medium text-maroon-700">
                                     {{ typeLabels[group.type] || group.type }}
                                 </span>
                             </div>
@@ -94,7 +94,7 @@ function leave() {
                                 v-else
                                 type="button"
                                 :disabled="busy"
-                                class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+                                class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-50"
                                 @click="join"
                             >
                                 Join group
@@ -109,7 +109,7 @@ function leave() {
                         :class="[
                             'pb-3 text-sm font-medium transition',
                             tab === 'feed'
-                                ? 'border-b-2 border-indigo-600 text-indigo-600'
+                                ? 'border-b-2 border-maroon-600 text-maroon-600'
                                 : 'text-gray-500 hover:text-gray-700',
                         ]"
                         @click="tab = 'feed'"
@@ -121,7 +121,7 @@ function leave() {
                         :class="[
                             'pb-3 text-sm font-medium transition',
                             tab === 'members'
-                                ? 'border-b-2 border-indigo-600 text-indigo-600'
+                                ? 'border-b-2 border-maroon-600 text-maroon-600'
                                 : 'text-gray-500 hover:text-gray-700',
                         ]"
                         @click="tab = 'members'"

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -20,7 +20,7 @@ const whenLabel = computed(() =>
         :href="route('events.show', event.slug)"
         class="flex gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md"
     >
-        <div class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-lg bg-indigo-50 text-indigo-700">
+        <div class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-lg bg-maroon-50 text-maroon-700">
             <span class="text-xs font-semibold">{{ month }}</span>
             <span class="text-2xl font-bold leading-none">{{ day }}</span>
         </div>

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const visible = ref(false);
@@ -77,7 +77,7 @@ onUnmounted(() => {
                 </button>
                 <button
                     type="button"
-                    class="rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
+                    class="rounded-md bg-maroon-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-maroon-700 focus:outline-none focus:ring-2 focus:ring-maroon-500 focus:ring-offset-1"
                     @click="install"
                 >
                     Install

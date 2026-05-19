@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -101,14 +101,14 @@ function remove(id) {
                             rows="2"
                             maxlength="1000"
                             placeholder="Write a comment…"
-                            class="block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                            class="block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                         ></textarea>
                         <p class="mt-0.5 text-right text-xs text-gray-400">{{ remaining }}</p>
                     </div>
                     <button
                         type="button"
                         :disabled="!body.trim() || submitting"
-                        class="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-indigo-700 disabled:opacity-50"
+                        class="rounded-lg bg-maroon-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-maroon-700 disabled:opacity-50"
                         @click="submit"
                     >
                         Comment

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
@@ -72,11 +72,11 @@ async function destroy(id) {
                 </p>
                 <input type="file" accept=".csv,.txt" class="mt-3 block text-sm" @change="(e) => file = e.target.files[0]" />
                 <label class="mt-2 flex items-center gap-2 text-sm text-gray-700">
-                    <input type="checkbox" v-model="replaceAll" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                    <input type="checkbox" v-model="replaceAll" class="rounded border-gray-300 text-maroon-600 focus:ring-maroon-500" />
                     Replace all existing entries
                 </label>
                 <button type="button" :disabled="!file || uploading"
-                    class="mt-3 w-full rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-50"
+                    class="mt-3 w-full rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700 disabled:opacity-50"
                     @click="upload">
                     {{ uploading ? 'Uploading…' : 'Upload' }}
                 </button>
@@ -84,7 +84,7 @@ async function destroy(id) {
 
             <div class="lg:col-span-2">
                 <div class="mb-3 flex gap-2">
-                    <input v-model="q" type="text" placeholder="Search name, email, batch…" class="flex-1 rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500" @keydown.enter="search" />
+                    <input v-model="q" type="text" placeholder="Search name, email, batch…" class="flex-1 rounded-md border-gray-300 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500" @keydown.enter="search" />
                     <button type="button" class="rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-200" @click="search">Search</button>
                 </div>
                 <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">

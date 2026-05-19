@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, reactive } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -63,7 +63,7 @@ function submit() {
                                 rows="4"
                                 maxlength="1000"
                                 placeholder="Your answer…"
-                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                             ></textarea>
 
                             <div v-else-if="q.type === 'single_choice'" class="space-y-2">
@@ -76,7 +76,7 @@ function submit() {
                                         type="radio"
                                         :value="opt"
                                         v-model="answers[q.id]"
-                                        class="border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="border-gray-300 text-maroon-600 focus:ring-maroon-500"
                                     />
                                     {{ opt }}
                                 </label>
@@ -93,7 +93,7 @@ function submit() {
                                         type="checkbox"
                                         :value="opt"
                                         v-model="answers[q.id]"
-                                        class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        class="rounded border-gray-300 text-maroon-600 focus:ring-maroon-500"
                                     />
                                     {{ opt }}
                                 </label>
@@ -106,7 +106,7 @@ function submit() {
                     <button
                         type="submit"
                         :disabled="processing"
-                        class="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
+                        class="w-full rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60"
                     >
                         {{ processing ? 'Submitting…' : 'Submit survey' }}
                     </button>

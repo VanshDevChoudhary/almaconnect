@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, reactive } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -98,7 +98,7 @@ const categoryColor = { bug: 'text-red-700', suggestion: 'text-blue-700', genera
                             <p class="text-sm text-gray-800 whitespace-pre-line">{{ fb.message }}</p>
                             <p class="mt-2 text-xs text-gray-500">{{ fb.name }} · {{ fb.email }}</p>
                             <div class="mt-3 flex gap-3">
-                                <button type="button" class="text-xs font-medium text-indigo-600 hover:text-indigo-700" @click="toggle(fb.id)">
+                                <button type="button" class="text-xs font-medium text-maroon-600 hover:text-maroon-700" @click="toggle(fb.id)">
                                     {{ fb.is_resolved ? 'Mark unresolved' : 'Mark resolved' }}
                                 </button>
                                 <a :href="`mailto:${fb.email}`" class="text-xs font-medium text-gray-600 hover:text-gray-900">Reply via email</a>

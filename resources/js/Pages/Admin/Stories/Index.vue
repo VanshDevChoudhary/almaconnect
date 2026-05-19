@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -49,7 +49,7 @@ const badge = {
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Manage stories</h2>
-                <Link :href="route('admin.stories.create')" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                <Link :href="route('admin.stories.create')" class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700">
                     + New story
                 </Link>
             </div>
@@ -78,7 +78,7 @@ const badge = {
                                 <td class="px-4 py-3 text-right">
                                     <button v-if="s.status === 'pending'" type="button" class="text-green-600 hover:text-green-700" @click="approve(s.id)">Approve</button>
                                     <button v-if="s.status === 'pending'" type="button" class="ml-3 text-red-600 hover:text-red-700" @click="reject(s.id)">Reject</button>
-                                    <Link :href="route('admin.stories.edit', s.id)" class="ml-3 text-indigo-600 hover:text-indigo-700">Edit</Link>
+                                    <Link :href="route('admin.stories.edit', s.id)" class="ml-3 text-maroon-600 hover:text-maroon-700">Edit</Link>
                                     <button type="button" class="ml-3 text-gray-500 hover:text-red-700" @click="destroy(s.id)">Delete</button>
                                 </td>
                             </tr>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Error') — AlmaConnect</title>
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#8b1627">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -13,7 +13,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 50%, #ede9fe 100%);
+            background: linear-gradient(135deg, #fef2f3 0%, #fde3e6 50%, #fde3e6 100%);
             padding: 1.5rem;
         }
         .card {
@@ -23,7 +23,7 @@
             padding: 3rem 2.5rem;
             max-width: 30rem;
             width: 100%;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,.05), 0 10px 30px -5px rgba(79,70,229,.12);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,.05), 0 10px 30px -5px rgba(139,22,39,.12);
             animation: fadeUp 0.4s ease-out both;
         }
         @keyframes fadeUp {
@@ -40,7 +40,7 @@
             margin-bottom: 2rem;
             letter-spacing: -0.01em;
         }
-        .logo span { color: #4F46E5; }
+        .logo span { color: #8b1627; }
         .code {
             display: inline-flex;
             align-items: center;
@@ -48,10 +48,10 @@
             width: 5rem;
             height: 5rem;
             border-radius: 50%;
-            background: #eef2ff;
+            background: #fef2f3;
             font-size: 1.75rem;
             font-weight: 800;
-            color: #4F46E5;
+            color: #8b1627;
             margin: 0 auto 1.5rem;
         }
         h1 {
@@ -71,7 +71,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
-            background: #4F46E5;
+            background: #8b1627;
             color: #ffffff;
             font-size: 0.875rem;
             font-weight: 600;
@@ -82,7 +82,7 @@
             text-decoration: none;
             transition: background 0.15s, transform 0.1s;
         }
-        .btn:hover { background: #4338ca; transform: translateY(-1px); }
+        .btn:hover { background: #761524; transform: translateY(-1px); }
         .btn:active { transform: translateY(0); }
         .btn-ghost {
             background: transparent;

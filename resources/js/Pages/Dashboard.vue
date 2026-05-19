@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
@@ -51,11 +51,11 @@ function dismiss() {
                 >
                     <div
                         v-if="visibleSurvey"
-                        class="mb-6 flex items-center justify-between rounded-xl bg-indigo-50 px-5 py-4 shadow-sm"
+                        class="mb-6 flex items-center justify-between rounded-xl bg-maroon-50 px-5 py-4 shadow-sm"
                     >
                         <div class="flex items-center gap-3">
-                            <span class="text-indigo-600">📋</span>
-                            <p class="text-sm font-medium text-indigo-900">
+                            <span class="text-maroon-600">📋</span>
+                            <p class="text-sm font-medium text-maroon-900">
                                 A new survey is open:
                                 <span class="font-semibold">{{ visibleSurvey.title }}</span>
                             </p>
@@ -63,13 +63,13 @@ function dismiss() {
                         <div class="flex items-center gap-3">
                             <Link
                                 :href="route('surveys.show', visibleSurvey.id)"
-                                class="text-sm font-semibold text-indigo-700 hover:text-indigo-900"
+                                class="text-sm font-semibold text-maroon-700 hover:text-maroon-900"
                             >
                                 Take it →
                             </Link>
                             <button
                                 type="button"
-                                class="text-indigo-400 hover:text-indigo-700"
+                                class="text-maroon-400 hover:text-maroon-700"
                                 aria-label="Dismiss"
                                 @click="dismiss"
                             >

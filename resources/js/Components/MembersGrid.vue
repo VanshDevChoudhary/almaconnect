@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import UserAvatar from '@/Components/UserAvatar.vue';
@@ -23,7 +23,7 @@ defineProps({
                     {{ m.name }}
                     <span
                         v-if="m.role === 'moderator'"
-                        class="ml-1 rounded-full bg-indigo-50 px-1.5 py-0.5 text-xs font-medium text-indigo-700"
+                        class="ml-1 rounded-full bg-maroon-50 px-1.5 py-0.5 text-xs font-medium text-maroon-700"
                     >
                         mod
                     </span>

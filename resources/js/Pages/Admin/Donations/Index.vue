@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { reactive } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -96,7 +96,7 @@ const statusColor = (s) => ({
                                 <td class="px-4 py-3 font-medium capitalize" :class="statusColor(d.status)">{{ d.status }}</td>
                                 <td class="px-4 py-3 text-gray-500">{{ dayjs(d.created_at).format('MMM D, YYYY') }}</td>
                                 <td class="px-4 py-3 text-right">
-                                    <a v-if="d.has_receipt" :href="route('donate.receipt', d.id)" class="text-indigo-600 hover:text-indigo-700">Receipt</a>
+                                    <a v-if="d.has_receipt" :href="route('donate.receipt', d.id)" class="text-maroon-600 hover:text-maroon-700">Receipt</a>
                                 </td>
                             </tr>
                             <tr v-if="!donations.data.length"><td colspan="7" class="px-4 py-10 text-center text-gray-500">No donations.</td></tr>

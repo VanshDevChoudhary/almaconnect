@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, watch } from 'vue';
 
 const props = defineProps({
@@ -41,7 +41,7 @@ function clear() {
             v-model="local"
             type="search"
             placeholder="Search by name, company, skill…"
-            class="block w-full rounded-lg border-gray-300 py-2.5 pl-10 pr-10 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            class="block w-full rounded-lg border-gray-300 py-2.5 pl-10 pr-10 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
         />
         <button
             v-if="local"

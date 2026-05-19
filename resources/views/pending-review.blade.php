@@ -1,7 +1,7 @@
-<x-layouts.centered title="Account under review — AlmaConnect">
+﻿<x-layouts.centered title="Account under review — AlmaConnect">
     <div class="text-center">
-        <div class="ac-icon mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50">
-            <svg class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <div class="ac-icon mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-maroon-50">
+            <svg class="h-8 w-8 text-maroon-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
         </div>

@@ -9,4 +9,17 @@
     --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+
+    /* Maroon palette — primary brand colour */
+    --color-maroon-50:  #fef2f3;
+    --color-maroon-100: #fde3e6;
+    --color-maroon-200: #fbccd2;
+    --color-maroon-300: #f7a5b0;
+    --color-maroon-400: #f07080;
+    --color-maroon-500: #e63d55;
+    --color-maroon-600: #c9243d;
+    --color-maroon-700: #a81830;
+    --color-maroon-800: #8b1627;
+    --color-maroon-900: #761524;
+    --color-maroon-950: #400a13;
 }

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { Link } from '@inertiajs/vue3';
 import UserAvatar from '@/Components/UserAvatar.vue';
 
@@ -24,11 +24,11 @@ const CATEGORY_LABELS = {
     >
         <div
             :class="featured ? 'sm:w-1/2 aspect-video sm:aspect-auto' : 'aspect-video'"
-            class="w-full bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600"
+            class="w-full bg-gradient-to-r from-maroon-500 via-maroon-600 to-maroon-600"
             :style="story.cover_image ? { backgroundImage: `url(/storage/${story.cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
         ></div>
         <div :class="featured ? 'sm:w-1/2' : ''" class="p-5">
-            <span class="inline-block rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-indigo-700">
+            <span class="inline-block rounded-full bg-maroon-50 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-maroon-700">
                 {{ CATEGORY_LABELS[story.category] || story.category }}
             </span>
             <h3 :class="featured ? 'text-2xl' : 'text-lg'" class="mt-3 font-bold leading-tight text-gray-900">

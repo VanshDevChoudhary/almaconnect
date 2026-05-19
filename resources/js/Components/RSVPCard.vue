@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { gsap } from 'gsap';
 import { useToast } from '@/Composables/useToast';
@@ -88,7 +88,7 @@ async function choose(next) {
                 :class="[
                     'flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition active:scale-[0.97] disabled:opacity-60',
                     status === o.key
-                        ? 'bg-indigo-600 text-white'
+                        ? 'bg-maroon-600 text-white'
                         : 'border border-gray-300 text-gray-700 hover:bg-gray-50',
                 ]"
                 @click="choose(o.key)"
@@ -107,7 +107,7 @@ async function choose(next) {
             <div v-if="capacity" class="mt-2 h-2 w-full overflow-hidden rounded-full bg-gray-100">
                 <div
                     ref="bar"
-                    class="h-full rounded-full bg-indigo-600 transition-[width] duration-500"
+                    class="h-full rounded-full bg-maroon-600 transition-[width] duration-500"
                     :style="{ width: pct + '%' }"
                 ></div>
             </div>
@@ -127,7 +127,7 @@ async function choose(next) {
             :href="event.online_url"
             target="_blank"
             rel="noopener"
-            class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+            class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-maroon-700"
         >
             Join meeting
         </a>

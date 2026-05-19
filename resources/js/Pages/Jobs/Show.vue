@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { computed } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -109,7 +109,7 @@ async function destroy() {
                             {{ job.company }}<span v-if="job.location"> · {{ job.location }}</span>
                         </p>
                         <div class="mt-3 flex flex-wrap items-center gap-2">
-                            <span class="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700">
+                            <span class="rounded-full bg-maroon-50 px-2.5 py-0.5 text-xs font-medium text-maroon-700">
                                 {{ JOB_TYPE_LABELS[job.type] || job.type }}
                             </span>
                             <span v-if="salary" class="text-sm font-medium text-gray-700">{{ salary }}</span>
@@ -135,7 +135,7 @@ async function destroy() {
                                 :href="applyHref"
                                 :target="applyExternal ? '_blank' : undefined"
                                 :rel="applyExternal ? 'noopener nofollow' : undefined"
-                                class="block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-indigo-700 hover:shadow"
+                                class="block w-full rounded-lg bg-maroon-600 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-maroon-700 hover:shadow"
                             >
                                 Apply now
                             </a>

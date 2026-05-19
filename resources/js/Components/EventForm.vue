@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -59,7 +59,7 @@ function submit() {
                 id="description"
                 v-model="form.description"
                 rows="6"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                 required
             ></textarea>
             <InputError class="mt-2" :message="form.errors.description" />
@@ -89,7 +89,7 @@ function submit() {
                     id="starts_at"
                     v-model="form.starts_at"
                     type="datetime-local"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                     required
                 />
                 <InputError class="mt-2" :message="form.errors.starts_at" />
@@ -100,7 +100,7 @@ function submit() {
                     id="ends_at"
                     v-model="form.ends_at"
                     type="datetime-local"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                 />
                 <InputError class="mt-2" :message="form.errors.ends_at" />
             </div>
@@ -129,7 +129,7 @@ function submit() {
             <button
                 type="submit"
                 :disabled="form.processing"
-                class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
+                class="rounded-lg bg-maroon-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-60"
             >
                 {{ form.processing ? 'Saving…' : mode === 'edit' ? 'Update event' : 'Create event' }}
             </button>

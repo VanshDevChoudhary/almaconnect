@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, watch, nextTick, onMounted, onUnmounted } from 'vue';
 import { useConfirm } from '@/Composables/useConfirm';
 
@@ -86,7 +86,7 @@ onUnmounted(() => document.removeEventListener('keydown', trapFocus));
                                     ? 'bg-red-600 hover:bg-red-700 focus:ring-red-500'
                                     : state.variant === 'success'
                                       ? 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500'
-                                      : 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500',
+                                      : 'bg-maroon-600 hover:bg-maroon-700 focus:ring-maroon-500',
                             ]"
                             @click="handleConfirm"
                         >

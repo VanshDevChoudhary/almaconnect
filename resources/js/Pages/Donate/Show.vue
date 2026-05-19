@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -33,7 +33,7 @@ const daysLeft = computed(() => {
                 </Link>
 
                 <div
-                    class="mt-4 h-56 w-full overflow-hidden rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600"
+                    class="mt-4 h-56 w-full overflow-hidden rounded-xl bg-gradient-to-r from-maroon-500 via-maroon-600 to-maroon-600"
                     :style="campaign.cover_image ? { backgroundImage: `url(/storage/${campaign.cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
                 ></div>
 
@@ -83,7 +83,7 @@ const daysLeft = computed(() => {
                             </p>
                             <button
                                 type="button"
-                                class="mt-5 w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
+                                class="mt-5 w-full rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-700"
                                 @click="modalOpen = true"
                             >
                                 Donate now

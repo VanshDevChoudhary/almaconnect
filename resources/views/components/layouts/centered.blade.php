@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -22,10 +22,10 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50 antialiased">
+<body class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-maroon-50 antialiased">
     <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
         <div class="mb-8 text-2xl font-semibold tracking-tight text-gray-900">
-            Alma<span class="text-indigo-600">Connect</span>
+            Alma<span class="text-maroon-600">Connect</span>
         </div>
 
         <div class="ac-card w-full max-w-md rounded-xl border border-gray-200 bg-white p-8 shadow-xl">

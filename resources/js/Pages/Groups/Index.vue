@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref } from 'vue';
 import { Head, router } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -54,7 +54,7 @@ function setType(t) {
                         :class="[
                             'rounded-full px-4 py-1.5 text-sm font-medium transition',
                             activeType === t.key
-                                ? 'bg-indigo-600 text-white'
+                                ? 'bg-maroon-600 text-white'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
                         ]"
                         @click="setType(t.key)"

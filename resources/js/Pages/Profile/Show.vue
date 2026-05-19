@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -58,7 +58,7 @@ onMounted(() => {
                     <!-- Hero band -->
                     <div class="relative">
                         <div
-                            class="hero-band h-48 bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600"
+                            class="hero-band h-48 bg-gradient-to-r from-maroon-500 via-maroon-600 to-maroon-600"
                         ></div>
 
                         <Link
@@ -135,7 +135,7 @@ onMounted(() => {
                             :href="profile.linkedin_url"
                             target="_blank"
                             rel="noopener"
-                            class="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                            class="inline-flex items-center gap-1.5 text-sm font-medium text-maroon-600 hover:text-maroon-700"
                         >
                             <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8h4.56v15H.22V8zm7.5 0h4.37v2.05h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v8.31h-4.56v-7.36c0-1.76-.03-4.02-2.45-4.02-2.45 0-2.83 1.91-2.83 3.89V23H7.72V8z"/></svg>
                             LinkedIn
@@ -145,7 +145,7 @@ onMounted(() => {
                             :href="profile.website_url"
                             target="_blank"
                             rel="noopener"
-                            class="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                            class="inline-flex items-center gap-1.5 text-sm font-medium text-maroon-600 hover:text-maroon-700"
                         >
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
                             Website
@@ -165,7 +165,7 @@ onMounted(() => {
                     <p v-else class="mt-2 text-sm text-gray-400">
                         <template v-if="isOwner">
                             This user hasn't added a bio yet.
-                            <Link :href="route('profile.edit')" class="font-medium text-indigo-600 hover:text-indigo-700">Add a bio</Link>
+                            <Link :href="route('profile.edit')" class="font-medium text-maroon-600 hover:text-maroon-700">Add a bio</Link>
                         </template>
                         <template v-else>This user hasn't added a bio yet.</template>
                     </p>

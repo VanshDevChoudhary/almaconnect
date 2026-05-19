@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -85,13 +85,13 @@ function open(slug) {
                 v-for="(cell, i) in cells"
                 :key="i"
                 class="min-h-[84px] bg-white p-1.5 text-left transition"
-                :class="cell?.events.length ? 'cursor-pointer hover:bg-indigo-50' : ''"
+                :class="cell?.events.length ? 'cursor-pointer hover:bg-maroon-50' : ''"
                 @click="pick(cell)"
             >
                 <template v-if="cell">
                     <span
                         class="text-xs font-medium"
-                        :class="cell.date.isSame(dayjs(), 'day') ? 'rounded-full bg-indigo-600 px-1.5 py-0.5 text-white' : 'text-gray-700'"
+                        :class="cell.date.isSame(dayjs(), 'day') ? 'rounded-full bg-maroon-600 px-1.5 py-0.5 text-white' : 'text-gray-700'"
                     >
                         {{ cell.day }}
                     </span>
@@ -100,7 +100,7 @@ function open(slug) {
                             v-for="ev in cell.events.slice(0, 3)"
                             :key="ev.slug"
                             type="button"
-                            class="block w-full truncate rounded bg-indigo-100 px-1 py-0.5 text-left text-[10px] text-indigo-700 hover:bg-indigo-200"
+                            class="block w-full truncate rounded bg-maroon-100 px-1 py-0.5 text-left text-[10px] text-maroon-700 hover:bg-maroon-200"
                             :title="ev.title"
                             @click.stop="open(ev.slug)"
                         >
@@ -125,7 +125,7 @@ function open(slug) {
                 <li v-for="ev in selectedEvents" :key="ev.slug">
                     <button
                         type="button"
-                        class="text-sm text-indigo-600 hover:text-indigo-700"
+                        class="text-sm text-maroon-600 hover:text-maroon-700"
                         @click="open(ev.slug)"
                     >
                         {{ ev.title }} · {{ dayjs(ev.starts_at).format('h:mm A') }}

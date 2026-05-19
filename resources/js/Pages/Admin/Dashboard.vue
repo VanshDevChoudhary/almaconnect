@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -68,7 +68,7 @@ onMounted(() => {
             <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
                 <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500">Quick actions</h2>
                 <div class="mt-4 space-y-3">
-                    <Link :href="route('admin.events.create')" class="flex w-full items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">
+                    <Link :href="route('admin.events.create')" class="flex w-full items-center gap-2 rounded-lg bg-maroon-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-maroon-700">
                         📅 Create event
                     </Link>
                     <Link :href="route('admin.campaigns.create')" class="flex w-full items-center gap-2 rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">

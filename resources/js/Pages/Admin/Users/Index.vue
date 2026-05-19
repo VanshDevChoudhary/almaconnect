@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { reactive } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
@@ -93,7 +93,7 @@ const statusColor = { approved: 'text-green-700', pending: 'text-amber-700', rej
                         <td class="px-4 py-3 capitalize font-medium" :class="statusColor[u.status]">{{ u.status }}</td>
                         <td class="px-4 py-3 text-gray-500">{{ dayjs(u.created_at).format('MMM D, YYYY') }}</td>
                         <td class="px-4 py-3 text-right">
-                            <Link v-if="u.profile_slug" :href="route('profile.show', u.profile_slug)" class="text-indigo-600 hover:text-indigo-700">View</Link>
+                            <Link v-if="u.profile_slug" :href="route('profile.show', u.profile_slug)" class="text-maroon-600 hover:text-maroon-700">View</Link>
                             <Link :href="route('admin.users.edit', u.id)" class="ml-3 text-gray-600 hover:text-gray-900">Edit</Link>
                             <button type="button" class="ml-3 text-red-600 hover:text-red-700" @click="destroy(u.id)">Delete</button>
                         </td>

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, watch, nextTick } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import UserAvatar from '@/Components/UserAvatar.vue';
@@ -77,7 +77,7 @@ function submit() {
                     rows="2"
                     maxlength="5000"
                     placeholder="Write something for the group… (Markdown supported)"
-                    class="block w-full resize-none rounded-lg border-gray-300 text-sm shadow-sm transition focus:border-indigo-600 focus:ring-indigo-500"
+                    class="block w-full resize-none rounded-lg border-gray-300 text-sm shadow-sm transition focus:border-maroon-600 focus:ring-maroon-500"
                 ></textarea>
                 <div
                     v-else
@@ -127,7 +127,7 @@ function submit() {
                     <button
                         type="button"
                         :disabled="!form.body.trim() || form.processing"
-                        class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+                        class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-maroon-700 disabled:opacity-50"
                         @click="submit"
                     >
                         {{ form.processing ? 'Posting…' : 'Post' }}

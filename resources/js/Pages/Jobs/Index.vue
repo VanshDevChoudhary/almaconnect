@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, reactive, onMounted, onUnmounted, nextTick } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { gsap } from 'gsap';
@@ -91,7 +91,7 @@ onUnmounted(() => stop?.());
                         <Link
                             v-if="canPost"
                             :href="route('jobs.create')"
-                            class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+                            class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700"
                         >
                             + Post a job
                         </Link>
@@ -120,7 +120,7 @@ onUnmounted(() => stop?.());
                             </p>
                             <select
                                 v-model="state.sort"
-                                class="rounded-md border-gray-300 py-1.5 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                class="rounded-md border-gray-300 py-1.5 text-sm shadow-sm focus:border-maroon-500 focus:ring-maroon-500"
                                 @change="navigate"
                             >
                                 <option value="latest">Latest</option>
@@ -137,7 +137,7 @@ onUnmounted(() => stop?.());
                                 </svg>
                                 <h3 class="mt-3 text-base font-semibold text-gray-900">No active jobs right now</h3>
                                 <p class="mt-1 text-sm text-gray-500">Check back soon, or post one if you're hiring.</p>
-                                <Link v-if="canPost" :href="route('jobs.create')" class="mt-4 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                                <Link v-if="canPost" :href="route('jobs.create')" class="mt-4 inline-block rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700">
                                     Post a job
                                 </Link>
                             </div>

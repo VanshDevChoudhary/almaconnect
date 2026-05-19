@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
@@ -43,7 +43,7 @@ const readTime = (n) => Math.max(1, Math.ceil(n * 0.5));
                                 <Link
                                     v-else
                                     :href="route('surveys.show', s.id)"
-                                    class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+                                    class="rounded-lg bg-maroon-600 px-4 py-2 text-sm font-semibold text-white hover:bg-maroon-700"
                                 >
                                     Take survey →
                                 </Link>

@@ -1,4 +1,4 @@
-<x-layouts.centered title="Access denied — AlmaConnect">
+﻿<x-layouts.centered title="Access denied — AlmaConnect">
     <div class="text-center">
         <div class="ac-icon mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-50">
             <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -10,7 +10,7 @@
             <h1 class="mt-6 text-xl font-semibold text-gray-900">Account suspended</h1>
             <p class="mt-3 text-sm leading-6 text-gray-600">
                 This account has been suspended. Contact
-                <a class="font-medium text-indigo-600 hover:text-indigo-700"
+                <a class="font-medium text-maroon-600 hover:text-maroon-700"
                    href="mailto:{{ config('almaconnect.contact_email') }}">the alumni cell</a>
                 if you believe this was an error.
             </p>
@@ -19,7 +19,7 @@
             <p class="mt-3 text-sm leading-6 text-gray-600">
                 Your account application was not approved. If you believe this was a mistake,
                 please contact
-                <a class="font-medium text-indigo-600 hover:text-indigo-700"
+                <a class="font-medium text-maroon-600 hover:text-maroon-700"
                    href="mailto:{{ config('almaconnect.contact_email') }}">the alumni cell</a>.
             </p>
         @endif

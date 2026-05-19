@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { computed } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
@@ -44,7 +44,7 @@ function barPct(count) {
                         <div v-for="row in q.distribution" :key="row.option" class="flex items-center gap-3 text-sm">
                             <span class="w-36 shrink-0 truncate text-gray-700">{{ row.option }}</span>
                             <div class="flex-1 overflow-hidden rounded-full bg-gray-100 h-3">
-                                <div class="h-full rounded-full bg-indigo-600 transition-[width] duration-700" :style="{ width: barPct(row.count) + '%' }"></div>
+                                <div class="h-full rounded-full bg-maroon-600 transition-[width] duration-700" :style="{ width: barPct(row.count) + '%' }"></div>
                             </div>
                             <span class="w-16 shrink-0 text-right text-gray-600">{{ row.count }} ({{ barPct(row.count) }}%)</span>
                         </div>

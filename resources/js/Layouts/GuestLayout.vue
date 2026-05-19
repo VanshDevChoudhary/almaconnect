@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { useAuthAnimation } from '@/composables/useAuthAnimation';
@@ -9,13 +9,13 @@ useAuthAnimation(card);
 
 <template>
     <div
-        class="flex min-h-screen flex-col items-center bg-gradient-to-br from-gray-50 via-white to-indigo-50 px-4 py-12 sm:justify-center"
+        class="flex min-h-screen flex-col items-center bg-gradient-to-br from-gray-50 via-white to-maroon-50 px-4 py-12 sm:justify-center"
     >
         <Link
             href="/"
             class="mb-8 text-2xl font-semibold tracking-tight text-gray-900"
         >
-            Alma<span class="text-indigo-600">Connect</span>
+            Alma<span class="text-maroon-600">Connect</span>
         </Link>
 
         <div
