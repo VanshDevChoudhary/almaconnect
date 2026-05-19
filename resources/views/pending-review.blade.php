@@ -19,9 +19,9 @@
                 Contact the alumni cell
             </a>
 
-            <form method="POST" action="{{ route('logout') }}">
+            <form id="logout-form" method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit"
+                <button type="submit" form="logout-form"
                         class="w-full rounded-lg px-4 py-2.5 text-sm font-medium text-gray-500 transition hover:text-gray-900">
                     Log out
                 </button>
